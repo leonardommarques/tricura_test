@@ -1,0 +1,109 @@
+incident_type,feature,feature_readable,coefficient,direction,abs_coefficient
+Altercation,dx_distinct_icd,Distinct ICD codes,0.8487560098587326,increases_risk,0.8487560098587326
+Altercation,outpatient,Outpatient flag,-0.7550605995226373,decreases_risk,0.7550605995226373
+Altercation,dx_active_count,Active diagnoses,-0.7535598292818478,decreases_risk,0.7535598292818478
+Altercation,days_since_admission,Days since admission,-0.6059291684987346,decreases_risk,0.6059291684987346
+Altercation,med_on_time_rate_90d,Medication on-time rate (90d),-0.5956801812676229,decreases_risk,0.5956801812676229
+Altercation,tag_wound_care_90d,Document tag (wound care 90d),-0.592780462141826,decreases_risk,0.592780462141826
+Altercation,tag_physician_notification_90d,Document tag (physician notification 90d),0.5851902975196273,increases_risk,0.5851902975196273
+Altercation,tag_family_responsible_90d,Document tag (family responsible 90d),-0.526937936945819,decreases_risk,0.526937936945819
+Altercation,vital_count_30d,Vital sign events (30d),0.5204733243294993,increases_risk,0.5204733243294993
+Altercation,vital_count_90d,Vital sign events (90d),0.5037520046336298,increases_risk,0.5037520046336298
+Altercation,needs_active_count,Active care needs,0.4803764881014396,increases_risk,0.4803764881014396
+Altercation,tag_nutrition_plan_90d,Document tag (nutrition plan 90d),0.3790211387096561,increases_risk,0.3790211387096561
+Altercation,tag_family_responsible_30d,Document tag (family responsible 30d),0.34931787100066897,increases_risk,0.34931787100066897
+Altercation,age_years,Age at index (years),-0.27341379671906246,decreases_risk,0.27341379671906246
+Altercation,tag_pain_progress_note_30d,Document tag (pain progress note 30d),-0.23420385176369005,decreases_risk,0.23420385176369005
+Altercation,med_count_30d,Medication administrations (30d),-0.2078759171158247,decreases_risk,0.2078759171158247
+Altercation,med_count_90d,Medication administrations (90d),0.20271482644372296,increases_risk,0.20271482644372296
+Altercation,tag_nutrition_plan_30d,Document tag (nutrition plan 30d),-0.1999932452419532,decreases_risk,0.1999932452419532
+Altercation,tag_wound_care_30d,Document tag (wound care 30d),0.18541586336289226,increases_risk,0.18541586336289226
+Altercation,tag_assistance_needed_90d,Document tag (assistance needed 90d),-0.18039974412273319,decreases_risk,0.18039974412273319
+Altercation,med_on_time_rate_30d,Medication on-time rate (30d),-0.15850669706000042,decreases_risk,0.15850669706000042
+Altercation,tag_physician_notification_30d,Document tag (physician notification 30d),0.06109210865728401,increases_risk,0.06109210865728401
+Altercation,tag_hypertension_90d,Document tag (hypertension 90d),-0.032979856883848566,decreases_risk,0.032979856883848566
+Altercation,tag_assistance_needed_30d,Document tag (assistance needed 30d),-0.02438123419893552,decreases_risk,0.02438123419893552
+Altercation,tag_pain_progress_note_90d,Document tag (pain progress note 90d),0.019536725251973315,increases_risk,0.019536725251973315
+Altercation,tag_hypertension_30d,Document tag (hypertension 30d),-0.01536663350890099,decreases_risk,0.01536663350890099
+Altercation,gg_count_30d,Functional (GG) assessments (30d),-0.0018203709266342207,decreases_risk,0.0018203709266342207
+Altercation,gg_count_90d,Functional (GG) assessments (90d),-0.0018203709266342207,decreases_risk,0.0018203709266342207
+Altercation,gg_response_code_mean_30d,GG response code (mean) (30d),-0.001820370926634203,decreases_risk,0.001820370926634203
+Altercation,gg_response_code_mean_90d,GG response code (mean) (90d),-0.001820370926634203,decreases_risk,0.001820370926634203
+Altercation,adl_count_30d,ADL assessments (30d),0.0,decreases_risk,0.0
+Altercation,adl_count_90d,ADL assessments (90d),0.0,decreases_risk,0.0
+Altercation,adl_change_sum_30d,ADL change score sum (30d),0.0,decreases_risk,0.0
+Altercation,adl_change_sum_90d,ADL change score sum (90d),0.0,decreases_risk,0.0
+Altercation,tag_antibiotic_therapy_30d,Document tag (antibiotic therapy 30d),0.0,decreases_risk,0.0
+Altercation,tag_antibiotic_therapy_90d,Document tag (antibiotic therapy 90d),0.0,decreases_risk,0.0
+Fall,vital_count_30d,Vital sign events (30d),1.0247124629955686,increases_risk,1.0247124629955686
+Fall,dx_distinct_icd,Distinct ICD codes,0.9780598252194637,increases_risk,0.9780598252194637
+Fall,dx_active_count,Active diagnoses,-0.7263640157253713,decreases_risk,0.7263640157253713
+Fall,outpatient,Outpatient flag,-0.6997362141487364,decreases_risk,0.6997362141487364
+Fall,age_years,Age at index (years),0.5349260996094956,increases_risk,0.5349260996094956
+Fall,days_since_admission,Days since admission,-0.491416852180682,decreases_risk,0.491416852180682
+Fall,tag_wound_care_30d,Document tag (wound care 30d),-0.3269119658399067,decreases_risk,0.3269119658399067
+Fall,needs_active_count,Active care needs,0.26239897026292225,increases_risk,0.26239897026292225
+Fall,tag_pain_progress_note_30d,Document tag (pain progress note 30d),-0.19396146856710322,decreases_risk,0.19396146856710322
+Fall,med_on_time_rate_30d,Medication on-time rate (30d),0.1426407929493531,increases_risk,0.1426407929493531
+Fall,med_count_90d,Medication administrations (90d),-0.14179705387900113,decreases_risk,0.14179705387900113
+Fall,tag_assistance_needed_90d,Document tag (assistance needed 90d),0.12263395423817465,increases_risk,0.12263395423817465
+Fall,vital_count_90d,Vital sign events (90d),-0.1009810846624454,decreases_risk,0.1009810846624454
+Fall,tag_nutrition_plan_90d,Document tag (nutrition plan 90d),0.0999079196311165,increases_risk,0.0999079196311165
+Fall,tag_physician_notification_30d,Document tag (physician notification 30d),-0.08532214106571959,decreases_risk,0.08532214106571959
+Fall,tag_family_responsible_90d,Document tag (family responsible 90d),-0.0809305449137956,decreases_risk,0.0809305449137956
+Fall,tag_physician_notification_90d,Document tag (physician notification 90d),-0.0790732721786814,decreases_risk,0.0790732721786814
+Fall,med_count_30d,Medication administrations (30d),-0.050838757524777275,decreases_risk,0.050838757524777275
+Fall,tag_hypertension_90d,Document tag (hypertension 90d),-0.05041235970930746,decreases_risk,0.05041235970930746
+Fall,tag_wound_care_90d,Document tag (wound care 90d),0.04104636166641807,increases_risk,0.04104636166641807
+Fall,tag_family_responsible_30d,Document tag (family responsible 30d),0.03999614210604913,increases_risk,0.03999614210604913
+Fall,tag_nutrition_plan_30d,Document tag (nutrition plan 30d),0.02897735647892952,increases_risk,0.02897735647892952
+Fall,tag_pain_progress_note_90d,Document tag (pain progress note 90d),-0.025855018656839545,decreases_risk,0.025855018656839545
+Fall,med_on_time_rate_90d,Medication on-time rate (90d),-0.017674912203220032,decreases_risk,0.017674912203220032
+Fall,tag_assistance_needed_30d,Document tag (assistance needed 30d),0.017545688028661396,increases_risk,0.017545688028661396
+Fall,tag_hypertension_30d,Document tag (hypertension 30d),-0.011616173463350359,decreases_risk,0.011616173463350359
+Fall,gg_response_code_mean_30d,GG response code (mean) (30d),-0.006871308025954434,decreases_risk,0.006871308025954434
+Fall,gg_response_code_mean_90d,GG response code (mean) (90d),-0.006871308025954434,decreases_risk,0.006871308025954434
+Fall,gg_count_30d,Functional (GG) assessments (30d),-0.006871308025954432,decreases_risk,0.006871308025954432
+Fall,gg_count_90d,Functional (GG) assessments (90d),-0.006871308025954432,decreases_risk,0.006871308025954432
+Fall,adl_count_30d,ADL assessments (30d),0.0,decreases_risk,0.0
+Fall,adl_count_90d,ADL assessments (90d),0.0,decreases_risk,0.0
+Fall,adl_change_sum_30d,ADL change score sum (30d),0.0,decreases_risk,0.0
+Fall,adl_change_sum_90d,ADL change score sum (90d),0.0,decreases_risk,0.0
+Fall,tag_antibiotic_therapy_30d,Document tag (antibiotic therapy 30d),0.0,decreases_risk,0.0
+Fall,tag_antibiotic_therapy_90d,Document tag (antibiotic therapy 90d),0.0,decreases_risk,0.0
+Wound,dx_distinct_icd,Distinct ICD codes,1.316029321308707,increases_risk,1.316029321308707
+Wound,dx_active_count,Active diagnoses,-0.9590201902651981,decreases_risk,0.9590201902651981
+Wound,outpatient,Outpatient flag,-0.6770489605249838,decreases_risk,0.6770489605249838
+Wound,vital_count_30d,Vital sign events (30d),0.6600957530916717,increases_risk,0.6600957530916717
+Wound,tag_pain_progress_note_90d,Document tag (pain progress note 90d),-0.5435007494327223,decreases_risk,0.5435007494327223
+Wound,med_on_time_rate_30d,Medication on-time rate (30d),0.35326642916445655,increases_risk,0.35326642916445655
+Wound,vital_count_90d,Vital sign events (90d),0.3449036899222371,increases_risk,0.3449036899222371
+Wound,med_count_30d,Medication administrations (30d),-0.2838857032028571,decreases_risk,0.2838857032028571
+Wound,needs_active_count,Active care needs,0.27174768292942975,increases_risk,0.27174768292942975
+Wound,med_on_time_rate_90d,Medication on-time rate (90d),-0.2657703058016439,decreases_risk,0.2657703058016439
+Wound,tag_assistance_needed_90d,Document tag (assistance needed 90d),-0.24816451037649503,decreases_risk,0.24816451037649503
+Wound,tag_family_responsible_90d,Document tag (family responsible 90d),0.24567320496514827,increases_risk,0.24567320496514827
+Wound,med_count_90d,Medication administrations (90d),0.2031044246601279,increases_risk,0.2031044246601279
+Wound,age_years,Age at index (years),0.16757717497728572,increases_risk,0.16757717497728572
+Wound,tag_wound_care_90d,Document tag (wound care 90d),-0.13690352086775193,decreases_risk,0.13690352086775193
+Wound,tag_hypertension_90d,Document tag (hypertension 90d),0.11447217567841007,increases_risk,0.11447217567841007
+Wound,tag_nutrition_plan_30d,Document tag (nutrition plan 30d),-0.10908429830931847,decreases_risk,0.10908429830931847
+Wound,tag_wound_care_30d,Document tag (wound care 30d),-0.10591652184902403,decreases_risk,0.10591652184902403
+Wound,tag_pain_progress_note_30d,Document tag (pain progress note 30d),0.10399456457348977,increases_risk,0.10399456457348977
+Wound,tag_physician_notification_90d,Document tag (physician notification 90d),0.07750835527344939,increases_risk,0.07750835527344939
+Wound,tag_nutrition_plan_90d,Document tag (nutrition plan 90d),-0.06818787355806033,decreases_risk,0.06818787355806033
+Wound,tag_assistance_needed_30d,Document tag (assistance needed 30d),-0.04747858005866674,decreases_risk,0.04747858005866674
+Wound,tag_hypertension_30d,Document tag (hypertension 30d),-0.04583378383617376,decreases_risk,0.04583378383617376
+Wound,tag_physician_notification_30d,Document tag (physician notification 30d),0.041524276532344855,increases_risk,0.041524276532344855
+Wound,days_since_admission,Days since admission,-0.025025913193048966,decreases_risk,0.025025913193048966
+Wound,gg_count_30d,Functional (GG) assessments (30d),-0.007553471029919323,decreases_risk,0.007553471029919323
+Wound,gg_count_90d,Functional (GG) assessments (90d),-0.007553471029919323,decreases_risk,0.007553471029919323
+Wound,gg_response_code_mean_30d,GG response code (mean) (30d),-0.007553471029919307,decreases_risk,0.007553471029919307
+Wound,gg_response_code_mean_90d,GG response code (mean) (90d),-0.007553471029919307,decreases_risk,0.007553471029919307
+Wound,tag_family_responsible_30d,Document tag (family responsible 30d),0.0003603420999253433,increases_risk,0.0003603420999253433
+Wound,adl_count_30d,ADL assessments (30d),0.0,decreases_risk,0.0
+Wound,adl_count_90d,ADL assessments (90d),0.0,decreases_risk,0.0
+Wound,adl_change_sum_30d,ADL change score sum (30d),0.0,decreases_risk,0.0
+Wound,adl_change_sum_90d,ADL change score sum (90d),0.0,decreases_risk,0.0
+Wound,tag_antibiotic_therapy_30d,Document tag (antibiotic therapy 30d),0.0,decreases_risk,0.0
+Wound,tag_antibiotic_therapy_90d,Document tag (antibiotic therapy 90d),0.0,decreases_risk,0.0

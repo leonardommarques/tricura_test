@@ -1,0 +1,782 @@
+{
+  "logistic": {
+    "train": {
+      "per_label": {
+        "Fall": {
+          "n_pos": 428,
+          "n": 65596,
+          "roc_auc": 0.83067516652861,
+          "pr_auc": 0.05219158746234223,
+          "accuracy": 0.9256204646624794,
+          "precision": 0.04009092787766067,
+          "recall": 0.4532710280373832,
+          "f1": 0.07366622365673059,
+          "confusion_matrix": {
+            "tn": 60523,
+            "fp": 4645,
+            "fn": 234,
+            "tp": 194
+          }
+        },
+        "Wound": {
+          "n_pos": 102,
+          "n": 65596,
+          "roc_auc": 0.8349920693229196,
+          "pr_auc": 0.018614924752659953,
+          "accuracy": 0.9553936215622904,
+          "precision": 0.011756569847856155,
+          "recall": 0.3333333333333333,
+          "f1": 0.022712090848363394,
+          "confusion_matrix": {
+            "tn": 62636,
+            "fp": 2858,
+            "fn": 68,
+            "tp": 34
+          }
+        },
+        "Altercation": {
+          "n_pos": 51,
+          "n": 65596,
+          "roc_auc": 0.895672633230575,
+          "pr_auc": 0.06200259548727544,
+          "accuracy": 0.9303463625830843,
+          "precision": 0.004822446295484437,
+          "recall": 0.43137254901960786,
+          "f1": 0.009538261435074788,
+          "confusion_matrix": {
+            "tn": 61005,
+            "fp": 4540,
+            "fn": 29,
+            "tp": 22
+          }
+        }
+      },
+      "summary": {
+        "split": "train",
+        "hamming_loss": 0.06287985039738195,
+        "subset_accuracy": 0.873422159887798,
+        "micro_f1": 0.03883796799751437,
+        "macro_f1": 0.03530552531338959,
+        "macro_recall": 0.40599230346344145,
+        "macro_precision": 0.018889981340333754,
+        "macro_roc_auc": 0.8537799563607015
+      }
+    },
+    "validation": {
+      "per_label": {
+        "Fall": {
+          "n_pos": 1171,
+          "n": 16406,
+          "roc_auc": 0.7175948567797923,
+          "pr_auc": 0.12379569159189624,
+          "accuracy": 0.5380348652931854,
+          "precision": 0.1182987848463188,
+          "recall": 0.8479931682322801,
+          "f1": 0.20763199163617355,
+          "confusion_matrix": {
+            "tn": 7834,
+            "fp": 7401,
+            "fn": 178,
+            "tp": 993
+          }
+        },
+        "Wound": {
+          "n_pos": 432,
+          "n": 16406,
+          "roc_auc": 0.6980175250059124,
+          "pr_auc": 0.04495075035122774,
+          "accuracy": 0.4968304278922345,
+          "precision": 0.041603187624516584,
+          "recall": 0.8217592592592593,
+          "f1": 0.07919687674288901,
+          "confusion_matrix": {
+            "tn": 7796,
+            "fp": 8178,
+            "fn": 77,
+            "tp": 355
+          }
+        },
+        "Altercation": {
+          "n_pos": 166,
+          "n": 16406,
+          "roc_auc": 0.7216685708350643,
+          "pr_auc": 0.025667260594309946,
+          "accuracy": 0.5157869072290625,
+          "precision": 0.0171343431835113,
+          "recall": 0.8313253012048193,
+          "f1": 0.033576642335766425,
+          "confusion_matrix": {
+            "tn": 8324,
+            "fp": 7916,
+            "fn": 28,
+            "tp": 138
+          }
+        }
+      },
+      "summary": {
+        "split": "validation",
+        "hamming_loss": 0.4831159331951725,
+        "subset_accuracy": 0.401316591490918,
+        "micro_f1": 0.11110280373831775,
+        "macro_f1": 0.10680183690494299,
+        "macro_recall": 0.8336925762321196,
+        "macro_precision": 0.05901210521811556,
+        "macro_roc_auc": 0.712426984206923
+      }
+    },
+    "test": {
+      "per_label": {
+        "Fall": {
+          "n_pos": 2783,
+          "n": 35289,
+          "roc_auc": 0.6187510002575826,
+          "pr_auc": 0.10980113493267404,
+          "accuracy": 0.5583042874550143,
+          "precision": 0.11531065977646918,
+          "recall": 0.6895436579231046,
+          "f1": 0.19758043758043758,
+          "confusion_matrix": {
+            "tn": 17783,
+            "fp": 14723,
+            "fn": 864,
+            "tp": 1919
+          }
+        },
+        "Wound": {
+          "n_pos": 964,
+          "n": 35289,
+          "roc_auc": 0.5971854798983358,
+          "pr_auc": 0.041724005394832245,
+          "accuracy": 0.5188585678256681,
+          "precision": 0.03582401020230711,
+          "recall": 0.6410788381742739,
+          "f1": 0.06785616250343124,
+          "confusion_matrix": {
+            "tn": 17692,
+            "fp": 16633,
+            "fn": 346,
+            "tp": 618
+          }
+        },
+        "Altercation": {
+          "n_pos": 310,
+          "n": 35289,
+          "roc_auc": 0.6560827740884162,
+          "pr_auc": 0.01515780979046176,
+          "accuracy": 0.5686757913230752,
+          "precision": 0.015530573786470856,
+          "recall": 0.7709677419354839,
+          "f1": 0.030447799222880437,
+          "confusion_matrix": {
+            "tn": 19829,
+            "fp": 15150,
+            "fn": 71,
+            "tp": 239
+          }
+        }
+      },
+      "summary": {
+        "split": "test",
+        "hamming_loss": 0.45138711779874746,
+        "subset_accuracy": 0.4074074074074074,
+        "micro_f1": 0.10408894055006655,
+        "macro_f1": 0.09862813310224976,
+        "macro_recall": 0.7005300793442876,
+        "macro_precision": 0.05555508125508238,
+        "macro_roc_auc": 0.6240064180814447
+      }
+    },
+    "tuning": {
+      "best_C": 0.01,
+      "val_macro_recall": 0.49201197998179264
+    }
+  },
+  "xgboost": {
+    "train": {
+      "per_label": {
+        "Fall": {
+          "n_pos": 428,
+          "n": 65596,
+          "roc_auc": 0.9381346644531688,
+          "pr_auc": 0.10530181609037328,
+          "accuracy": 0.957695591194585,
+          "precision": 0.09520524318730597,
+          "recall": 0.6448598130841121,
+          "f1": 0.1659152389540126,
+          "confusion_matrix": {
+            "tn": 62545,
+            "fp": 2623,
+            "fn": 152,
+            "tp": 276
+          }
+        },
+        "Wound": {
+          "n_pos": 102,
+          "n": 65596,
+          "roc_auc": 0.9992058096026758,
+          "pr_auc": 0.7001407508792736,
+          "accuracy": 0.9899079212147082,
+          "precision": 0.13350785340314136,
+          "recall": 1.0,
+          "f1": 0.23556581986143188,
+          "confusion_matrix": {
+            "tn": 64832,
+            "fp": 662,
+            "fn": 0,
+            "tp": 102
+          }
+        },
+        "Altercation": {
+          "n_pos": 51,
+          "n": 65596,
+          "roc_auc": 0.9997135630512789,
+          "pr_auc": 0.7485968631015596,
+          "accuracy": 0.9947100432953229,
+          "precision": 0.12814070351758794,
+          "recall": 1.0,
+          "f1": 0.22717149220489977,
+          "confusion_matrix": {
+            "tn": 65198,
+            "fp": 347,
+            "fn": 0,
+            "tp": 51
+          }
+        }
+      },
+      "summary": {
+        "split": "train",
+        "hamming_loss": 0.019228814765127954,
+        "subset_accuracy": 0.9538691383620953,
+        "micro_f1": 0.1848341232227488,
+        "macro_f1": 0.20955085034011475,
+        "macro_recall": 0.8816199376947041,
+        "macro_precision": 0.11895126670267842,
+        "macro_roc_auc": 0.9790180123690412
+      }
+    },
+    "validation": {
+      "per_label": {
+        "Fall": {
+          "n_pos": 1171,
+          "n": 16406,
+          "roc_auc": 0.7994730155544911,
+          "pr_auc": 0.18649867403243997,
+          "accuracy": 0.4556869438010484,
+          "precision": 0.11424878194292533,
+          "recall": 0.9812126387702819,
+          "f1": 0.20466690416815106,
+          "confusion_matrix": {
+            "tn": 6327,
+            "fp": 8908,
+            "fn": 22,
+            "tp": 1149
+          }
+        },
+        "Wound": {
+          "n_pos": 432,
+          "n": 16406,
+          "roc_auc": 0.9947285577489346,
+          "pr_auc": 0.7838199029150461,
+          "accuracy": 0.868645617457028,
+          "precision": 0.16698879010436798,
+          "recall": 1.0,
+          "f1": 0.2861874792977807,
+          "confusion_matrix": {
+            "tn": 13819,
+            "fp": 2155,
+            "fn": 0,
+            "tp": 432
+          }
+        },
+        "Altercation": {
+          "n_pos": 166,
+          "n": 16406,
+          "roc_auc": 0.9982799424298178,
+          "pr_auc": 0.8094915454580931,
+          "accuracy": 0.9249055223698647,
+          "precision": 0.11874105865522175,
+          "recall": 1.0,
+          "f1": 0.21227621483375958,
+          "confusion_matrix": {
+            "tn": 15008,
+            "fp": 1232,
+            "fn": 0,
+            "tp": 166
+          }
+        }
+      },
+      "summary": {
+        "split": "validation",
+        "hamming_loss": 0.2502539721240197,
+        "subset_accuracy": 0.4303913202486895,
+        "micro_f1": 0.22098538991841124,
+        "macro_f1": 0.23437686609989714,
+        "macro_recall": 0.9937375462567606,
+        "macro_precision": 0.13332621023417168,
+        "macro_roc_auc": 0.9308271719110812
+      }
+    },
+    "test": {
+      "per_label": {
+        "Fall": {
+          "n_pos": 2783,
+          "n": 35289,
+          "roc_auc": 0.6978834157132527,
+          "pr_auc": 0.14208791310968505,
+          "accuracy": 0.41542690356768397,
+          "precision": 0.11173962231311461,
+          "recall": 0.9227452389507725,
+          "f1": 0.19934019018047738,
+          "confusion_matrix": {
+            "tn": 12092,
+            "fp": 20414,
+            "fn": 215,
+            "tp": 2568
+          }
+        },
+        "Wound": {
+          "n_pos": 964,
+          "n": 35289,
+          "roc_auc": 0.6745685614382898,
+          "pr_auc": 0.0771165886696039,
+          "accuracy": 0.843690668480263,
+          "precision": 0.057198443579766535,
+          "recall": 0.3049792531120332,
+          "f1": 0.0963302752293578,
+          "confusion_matrix": {
+            "tn": 29479,
+            "fp": 4846,
+            "fn": 670,
+            "tp": 294
+          }
+        },
+        "Altercation": {
+          "n_pos": 310,
+          "n": 35289,
+          "roc_auc": 0.6873229467634498,
+          "pr_auc": 0.0266449125543212,
+          "accuracy": 0.8959165745699793,
+          "precision": 0.01970865467009426,
+          "recall": 0.22258064516129034,
+          "f1": 0.0362109682498032,
+          "confusion_matrix": {
+            "tn": 31547,
+            "fp": 3432,
+            "fn": 241,
+            "tp": 69
+          }
+        }
+      },
+      "summary": {
+        "split": "test",
+        "hamming_loss": 0.28165528446069127,
+        "subset_accuracy": 0.38332058148431525,
+        "micro_f1": 0.16429372197309416,
+        "macro_f1": 0.1106271445532128,
+        "macro_recall": 0.4834350457413654,
+        "macro_precision": 0.06288224018765846,
+        "macro_roc_auc": 0.6865916413049975
+      }
+    },
+    "tuning": {
+      "best_n_estimators_per_label": {
+        "Fall": 3,
+        "Wound": 253,
+        "Altercation": 178
+      }
+    }
+  },
+  "knn": {
+    "train": {
+      "per_label": {
+        "Fall": {
+          "n_pos": 428,
+          "n": 65596,
+          "roc_auc": 0.9993982662495898,
+          "pr_auc": 0.8433631287655436,
+          "accuracy": 0.9904110006707726,
+          "precision": 0.40491958372753073,
+          "recall": 1.0,
+          "f1": 0.5764309764309764,
+          "confusion_matrix": {
+            "tn": 64539,
+            "fp": 629,
+            "fn": 0,
+            "tp": 428
+          }
+        },
+        "Wound": {
+          "n_pos": 102,
+          "n": 65596,
+          "roc_auc": 0.9999257528155551,
+          "pr_auc": 0.9112861199487323,
+          "accuracy": 0.9981553753277639,
+          "precision": 0.45739910313901344,
+          "recall": 1.0,
+          "f1": 0.6276923076923077,
+          "confusion_matrix": {
+            "tn": 65373,
+            "fp": 121,
+            "fn": 0,
+            "tp": 102
+          }
+        },
+        "Altercation": {
+          "n_pos": 51,
+          "n": 65596,
+          "roc_auc": 1.0,
+          "pr_auc": 1.0,
+          "accuracy": 0.9995274102079396,
+          "precision": 0.6219512195121951,
+          "recall": 1.0,
+          "f1": 0.7669172932330827,
+          "confusion_matrix": {
+            "tn": 65514,
+            "fp": 31,
+            "fn": 0,
+            "tp": 51
+          }
+        }
+      },
+      "summary": {
+        "split": "train",
+        "hamming_loss": 0.003968737931174665,
+        "subset_accuracy": 0.9882462345264955,
+        "micro_f1": 0.5980442614513639,
+        "macro_f1": 0.6570135257854556,
+        "macro_recall": 1.0,
+        "macro_precision": 0.4947566354595798,
+        "macro_roc_auc": 0.9997746730217149
+      }
+    },
+    "validation": {
+      "per_label": {
+        "Fall": {
+          "n_pos": 1171,
+          "n": 16406,
+          "roc_auc": 0.9900533542673464,
+          "pr_auc": 0.7923011449423065,
+          "accuracy": 0.9202121175179813,
+          "precision": 0.4721774193548387,
+          "recall": 1.0,
+          "f1": 0.6414680909339907,
+          "confusion_matrix": {
+            "tn": 13926,
+            "fp": 1309,
+            "fn": 0,
+            "tp": 1171
+          }
+        },
+        "Wound": {
+          "n_pos": 432,
+          "n": 16406,
+          "roc_auc": 0.9973602938107758,
+          "pr_auc": 0.8335515115125994,
+          "accuracy": 0.9736072168718761,
+          "precision": 0.49942196531791905,
+          "recall": 1.0,
+          "f1": 0.6661526599845798,
+          "confusion_matrix": {
+            "tn": 15541,
+            "fp": 433,
+            "fn": 0,
+            "tp": 432
+          }
+        },
+        "Altercation": {
+          "n_pos": 166,
+          "n": 16406,
+          "roc_auc": 0.9984264644786041,
+          "pr_auc": 0.7608137151125349,
+          "accuracy": 0.9884188711447032,
+          "precision": 0.46629213483146065,
+          "recall": 1.0,
+          "f1": 0.6360153256704981,
+          "confusion_matrix": {
+            "tn": 16050,
+            "fp": 190,
+            "fn": 0,
+            "tp": 166
+          }
+        }
+      },
+      "summary": {
+        "split": "validation",
+        "hamming_loss": 0.039253931488479825,
+        "subset_accuracy": 0.886931610386444,
+        "micro_f1": 0.646800731261426,
+        "macro_f1": 0.6478786921963562,
+        "macro_recall": 1.0,
+        "macro_precision": 0.4792971731680728,
+        "macro_roc_auc": 0.9952800375189087
+      }
+    },
+    "test": {
+      "per_label": {
+        "Fall": {
+          "n_pos": 2783,
+          "n": 35289,
+          "roc_auc": 0.6610289630821687,
+          "pr_auc": 0.1312615840158632,
+          "accuracy": 0.7829635297118082,
+          "precision": 0.15300313122687162,
+          "recall": 0.38627380524613725,
+          "f1": 0.21918646141298806,
+          "confusion_matrix": {
+            "tn": 26555,
+            "fp": 5951,
+            "fn": 1708,
+            "tp": 1075
+          }
+        },
+        "Wound": {
+          "n_pos": 964,
+          "n": 35289,
+          "roc_auc": 0.6237269902959567,
+          "pr_auc": 0.04706428369687324,
+          "accuracy": 0.8807277055173001,
+          "precision": 0.07559508239602407,
+          "recall": 0.29979253112033194,
+          "f1": 0.12074368080217256,
+          "confusion_matrix": {
+            "tn": 30791,
+            "fp": 3534,
+            "fn": 675,
+            "tp": 289
+          }
+        },
+        "Altercation": {
+          "n_pos": 310,
+          "n": 35289,
+          "roc_auc": 0.5514870212450051,
+          "pr_auc": 0.015796323423593734,
+          "accuracy": 0.9742129275411602,
+          "precision": 0.04128440366972477,
+          "recall": 0.08709677419354839,
+          "f1": 0.056016597510373446,
+          "confusion_matrix": {
+            "tn": 34352,
+            "fp": 627,
+            "fn": 283,
+            "tp": 27
+          }
+        }
+      },
+      "summary": {
+        "split": "test",
+        "hamming_loss": 0.12069861240991055,
+        "subset_accuracy": 0.6654764940916433,
+        "micro_f1": 0.1787917737789203,
+        "macro_f1": 0.131982246575178,
+        "macro_recall": 0.2577210368533392,
+        "macro_precision": 0.08996087243087347,
+        "macro_roc_auc": 0.6120809915410436
+      }
+    },
+    "tuning": {
+      "best_n_neighbors": 5,
+      "val_macro_recall": 0.05165307305700647
+    }
+  },
+  "tpot": {
+    "train": {
+      "per_label": {
+        "Fall": {
+          "n_pos": 428,
+          "n": 65596,
+          "roc_auc": 0.9860225927925178,
+          "pr_auc": 0.5040078908973638,
+          "accuracy": 0.9943899018232819,
+          "precision": 0.6229508196721312,
+          "recall": 0.35514018691588783,
+          "f1": 0.4523809523809524,
+          "confusion_matrix": {
+            "tn": 65076,
+            "fp": 92,
+            "fn": 276,
+            "tp": 152
+          }
+        },
+        "Wound": {
+          "n_pos": 102,
+          "n": 65596,
+          "roc_auc": 0.9985856360438945,
+          "pr_auc": 0.4647992870791315,
+          "accuracy": 0.9985060064638087,
+          "precision": 0.5303030303030303,
+          "recall": 0.3431372549019608,
+          "f1": 0.4166666666666667,
+          "confusion_matrix": {
+            "tn": 65463,
+            "fp": 31,
+            "fn": 67,
+            "tp": 35
+          }
+        },
+        "Altercation": {
+          "n_pos": 51,
+          "n": 65596,
+          "roc_auc": 0.9979038499219964,
+          "pr_auc": 0.2916431035864898,
+          "accuracy": 0.9992072687358985,
+          "precision": 0.47368421052631576,
+          "recall": 0.17647058823529413,
+          "f1": 0.2571428571428571,
+          "confusion_matrix": {
+            "tn": 65535,
+            "fp": 10,
+            "fn": 42,
+            "tp": 9
+          }
+        }
+      },
+      "summary": {
+        "split": "train",
+        "hamming_loss": 0.0026322743256702646,
+        "subset_accuracy": 0.9924538081590341,
+        "micro_f1": 0.4307692307692308,
+        "macro_f1": 0.3753968253968254,
+        "macro_recall": 0.2915826766843809,
+        "macro_precision": 0.5423126868338257,
+        "macro_roc_auc": 0.9941706929194695
+      }
+    },
+    "validation": {
+      "per_label": {
+        "Fall": {
+          "n_pos": 1171,
+          "n": 16406,
+          "roc_auc": 0.9693796336753235,
+          "pr_auc": 0.7580850415523832,
+          "accuracy": 0.9580031695721077,
+          "precision": 0.7625272331154684,
+          "recall": 0.5977796754910333,
+          "f1": 0.6701771182383915,
+          "confusion_matrix": {
+            "tn": 15017,
+            "fp": 218,
+            "fn": 471,
+            "tp": 700
+          }
+        },
+        "Wound": {
+          "n_pos": 432,
+          "n": 16406,
+          "roc_auc": 0.9879854677044642,
+          "pr_auc": 0.7308015453090688,
+          "accuracy": 0.9826283067170547,
+          "precision": 0.7181008902077152,
+          "recall": 0.5601851851851852,
+          "f1": 0.6293888166449935,
+          "confusion_matrix": {
+            "tn": 15879,
+            "fp": 95,
+            "fn": 190,
+            "tp": 242
+          }
+        },
+        "Altercation": {
+          "n_pos": 166,
+          "n": 16406,
+          "roc_auc": 0.9636458395156983,
+          "pr_auc": 0.3631439080941949,
+          "accuracy": 0.9912227233938803,
+          "precision": 0.627906976744186,
+          "recall": 0.3253012048192771,
+          "f1": 0.42857142857142855,
+          "confusion_matrix": {
+            "tn": 16208,
+            "fp": 32,
+            "fn": 112,
+            "tp": 54
+          }
+        }
+      },
+      "summary": {
+        "split": "validation",
+        "hamming_loss": 0.02271526677231907,
+        "subset_accuracy": 0.9348409118615141,
+        "micro_f1": 0.6405144694533762,
+        "macro_f1": 0.5760457878182712,
+        "macro_recall": 0.49442202183183187,
+        "macro_precision": 0.7028450333557897,
+        "macro_roc_auc": 0.9736703136318287
+      }
+    },
+    "test": {
+      "per_label": {
+        "Fall": {
+          "n_pos": 2783,
+          "n": 35289,
+          "roc_auc": 0.6365423921626985,
+          "pr_auc": 0.13091426711267592,
+          "accuracy": 0.8783756978095157,
+          "precision": 0.18043202033036848,
+          "recall": 0.15307222421846928,
+          "f1": 0.1656298600311042,
+          "confusion_matrix": {
+            "tn": 30571,
+            "fp": 1935,
+            "fn": 2357,
+            "tp": 426
+          }
+        },
+        "Wound": {
+          "n_pos": 964,
+          "n": 35289,
+          "roc_auc": 0.5977255789635925,
+          "pr_auc": 0.05193863976289506,
+          "accuracy": 0.9508912125591544,
+          "precision": 0.10072689511941849,
+          "recall": 0.10062240663900415,
+          "f1": 0.10067462376751427,
+          "confusion_matrix": {
+            "tn": 33459,
+            "fp": 866,
+            "fn": 867,
+            "tp": 97
+          }
+        },
+        "Altercation": {
+          "n_pos": 310,
+          "n": 35289,
+          "roc_auc": 0.5870701222576864,
+          "pr_auc": 0.014276693394631931,
+          "accuracy": 0.9844710816401712,
+          "precision": 0.024,
+          "recall": 0.01935483870967742,
+          "f1": 0.02142857142857143,
+          "confusion_matrix": {
+            "tn": 34735,
+            "fp": 244,
+            "fn": 304,
+            "tp": 6
+          }
+        }
+      },
+      "summary": {
+        "split": "test",
+        "hamming_loss": 0.062087335997052906,
+        "subset_accuracy": 0.829323585253195,
+        "micro_f1": 0.13864500065522212,
+        "macro_f1": 0.0959110184090633,
+        "macro_recall": 0.09101648985571696,
+        "macro_precision": 0.10171963848326233,
+        "macro_roc_auc": 0.6071126977946592
+      }
+    },
+    "tuning": {
+      "per_label": {
+        "y_Fall": {
+          "exported_pipeline": "Pipeline(steps=[('maxabsscaler', MaxAbsScaler()),\n                ('variancethreshold',\n                 VarianceThreshold(threshold=0.0003878045217)),\n                ('featureunion-1',\n                 FeatureUnion(transformer_list=[('skiptransformer',\n                                                 SkipTransformer()),\n                                                ('passthrough',\n                                                 Passthrough())])),\n                ('featureunion-2',\n                 FeatureUnion(transformer_list=[('skiptransformer',\n                                                 SkipTransformer()),\n                                                ('passthrough',\n                                                 Passthrough())])),\n                ('decisiontreeclassifier',\n                 DecisionTreeClassifier(criterion=np.str_('gini'), max_depth=13,\n                                        min_samples_leaf=8,\n                                        min_samples_split=18,\n                                        random_state=42))])"
+        },
+        "y_Wound": {
+          "exported_pipeline": "Pipeline(steps=[('maxabsscaler', MaxAbsScaler()),\n                ('variancethreshold',\n                 VarianceThreshold(threshold=0.0003878045217)),\n                ('featureunion-1',\n                 FeatureUnion(transformer_list=[('skiptransformer',\n                                                 SkipTransformer()),\n                                                ('passthrough',\n                                                 Passthrough())])),\n                ('featureunion-2',\n                 FeatureUnion(transformer_list=[('skiptransformer',\n                                                 SkipTransformer()),\n                                                ('passthrough',\n                                                 Passthrough())])),\n                ('decisiontreeclassifier',\n                 DecisionTreeClassifier(criterion=np.str_('gini'), max_depth=13,\n                                        min_samples_leaf=8,\n                                        min_samples_split=18,\n                                        random_state=42))])"
+        },
+        "y_Altercation": {
+          "exported_pipeline": "Pipeline(steps=[('maxabsscaler', MaxAbsScaler()),\n                ('variancethreshold',\n                 VarianceThreshold(threshold=0.0003878045217)),\n                ('featureunion-1',\n                 FeatureUnion(transformer_list=[('skiptransformer',\n                                                 SkipTransformer()),\n                                                ('passthrough',\n                                                 Passthrough())])),\n                ('featureunion-2',\n                 FeatureUnion(transformer_list=[('skiptransformer',\n                                                 SkipTransformer()),\n                                                ('passthrough',\n                                                 Passthrough())])),\n                ('decisiontreeclassifier',\n                 DecisionTreeClassifier(criterion=np.str_('gini'), max_depth=13,\n                                        min_samples_leaf=8,\n                                        min_samples_split=18,\n                                        random_state=42))])"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "n_incidents": 3382,
+  "n_facilities": 92,
+  "n_residents_with_incident": 978,
+  "date_min": "2019-01-10 08:17:00",
+  "date_max": "2025-01-31 22:40:00",
+  "incident_types": [
+    "Fall",
+    "Wound",
+    "Altercation",
+    "Medication Error",
+    "Choking",
+    "Elopement"
+  ],
+  "recommended_label_types": [
+    "Fall",
+    "Wound",
+    "Altercation"
+  ],
+  "excluded_sparse_types": [
+    "Medication Error",
+    "Choking",
+    "Elopement"
+  ],
+  "strikeout_removed": true
+}

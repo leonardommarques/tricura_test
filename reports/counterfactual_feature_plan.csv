@@ -1,0 +1,11 @@
+feature,grid_direction,direction,incident_type,coefficient,chosen_step,chosen_percentile,avg_value_before,avg_value_after
+dx_distinct_icd,increase,increases_risk,Wound,1.316029321308707,7,25.315,13.9644,0.0
+vital_count_30d,increase,increases_risk,Fall,1.0247124629955686,2,59.1642,119.562,0.0
+tag_physician_notification_90d,increase,increases_risk,Altercation,0.5851902975196273,1,46.0666,1.1964,0.0
+age_years,increase,increases_risk,Fall,0.5349260996094956,8,25.0,75.68308884325803,66.65639972621489
+vital_count_90d,increase,increases_risk,Altercation,0.5037520046336298,2,60.152,338.1634,0.0
+dx_active_count,decrease,decreases_risk,Wound,-0.959020190265198,6,75.0,14.1102,17.0
+outpatient,decrease,decreases_risk,Altercation,-0.7550605995226373,0,50.17,0.0434,0.0434
+days_since_admission,decrease,decreases_risk,Altercation,-0.6059291684987346,8,75.0,672.2896,1100.0
+med_on_time_rate_90d,decrease,decreases_risk,Altercation,-0.5956801812676229,0,54.834,0.0673832551411363,0.0749866531875437
+tag_wound_care_90d,decrease,decreases_risk,Altercation,-0.592780462141826,0,55.44,1.2938,1.1968

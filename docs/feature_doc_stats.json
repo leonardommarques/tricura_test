@@ -1,0 +1,670 @@
+{
+  "n_features": 36,
+  "n_rows": 117291,
+  "catalog": [
+    {
+      "feature": "outpatient",
+      "readable": "Outpatient flag",
+      "group": "Resident",
+      "source": "residents.parquet",
+      "type": "point-in-time",
+      "window": "as of index"
+    },
+    {
+      "feature": "age_years",
+      "readable": "Age at index (years)",
+      "group": "Resident",
+      "source": "residents.parquet",
+      "type": "point-in-time",
+      "window": "as of index"
+    },
+    {
+      "feature": "days_since_admission",
+      "readable": "Days since admission",
+      "group": "Resident",
+      "source": "residents.parquet",
+      "type": "point-in-time",
+      "window": "as of index"
+    },
+    {
+      "feature": "dx_active_count",
+      "readable": "Active diagnoses",
+      "group": "Diagnosis",
+      "source": "diagnoses.parquet",
+      "type": "count",
+      "window": "as of index"
+    },
+    {
+      "feature": "dx_distinct_icd",
+      "readable": "Distinct ICD codes",
+      "group": "Diagnosis",
+      "source": "diagnoses.parquet",
+      "type": "distinct",
+      "window": "as of index"
+    },
+    {
+      "feature": "vital_count_30d",
+      "readable": "Vital sign events (30d)",
+      "group": "Vitals",
+      "source": "vitals.parquet",
+      "type": "count",
+      "window": "30d"
+    },
+    {
+      "feature": "vital_count_90d",
+      "readable": "Vital sign events (90d)",
+      "group": "Vitals",
+      "source": "vitals.parquet",
+      "type": "count",
+      "window": "90d"
+    },
+    {
+      "feature": "med_count_30d",
+      "readable": "Medication administrations (30d)",
+      "group": "Medications",
+      "source": "medications.parquet",
+      "type": "count",
+      "window": "30d"
+    },
+    {
+      "feature": "med_on_time_rate_30d",
+      "readable": "Medication on-time rate (30d)",
+      "group": "Medications",
+      "source": "medications.parquet",
+      "type": "rate",
+      "window": "30d"
+    },
+    {
+      "feature": "med_count_90d",
+      "readable": "Medication administrations (90d)",
+      "group": "Medications",
+      "source": "medications.parquet",
+      "type": "count",
+      "window": "90d"
+    },
+    {
+      "feature": "med_on_time_rate_90d",
+      "readable": "Medication on-time rate (90d)",
+      "group": "Medications",
+      "source": "medications.parquet",
+      "type": "rate",
+      "window": "90d"
+    },
+    {
+      "feature": "adl_count_30d",
+      "readable": "ADL assessments (30d)",
+      "group": "ADL",
+      "source": "adl_responses.parquet",
+      "type": "count",
+      "window": "30d"
+    },
+    {
+      "feature": "adl_count_90d",
+      "readable": "ADL assessments (90d)",
+      "group": "ADL",
+      "source": "adl_responses.parquet",
+      "type": "count",
+      "window": "90d"
+    },
+    {
+      "feature": "adl_change_sum_30d",
+      "readable": "ADL change score sum (30d)",
+      "group": "ADL",
+      "source": "adl_responses.parquet",
+      "type": "sum",
+      "window": "30d"
+    },
+    {
+      "feature": "adl_change_sum_90d",
+      "readable": "ADL change score sum (90d)",
+      "group": "ADL",
+      "source": "adl_responses.parquet",
+      "type": "sum",
+      "window": "90d"
+    },
+    {
+      "feature": "gg_count_30d",
+      "readable": "Functional (GG) assessments (30d)",
+      "group": "GG",
+      "source": "gg_responses.parquet",
+      "type": "count",
+      "window": "30d"
+    },
+    {
+      "feature": "gg_count_90d",
+      "readable": "Functional (GG) assessments (90d)",
+      "group": "GG",
+      "source": "gg_responses.parquet",
+      "type": "count",
+      "window": "90d"
+    },
+    {
+      "feature": "gg_response_code_mean_30d",
+      "readable": "GG response code (mean) (30d)",
+      "group": "GG",
+      "source": "gg_responses.parquet",
+      "type": "mean",
+      "window": "30d"
+    },
+    {
+      "feature": "gg_response_code_mean_90d",
+      "readable": "GG response code (mean) (90d)",
+      "group": "GG",
+      "source": "gg_responses.parquet",
+      "type": "mean",
+      "window": "90d"
+    },
+    {
+      "feature": "tag_pain_progress_note_30d",
+      "readable": "Document tag (pain progress note 30d)",
+      "group": "Document tag",
+      "source": "document_tags.parquet",
+      "type": "count",
+      "window": "30d"
+    },
+    {
+      "feature": "tag_pain_progress_note_90d",
+      "readable": "Document tag (pain progress note 90d)",
+      "group": "Document tag",
+      "source": "document_tags.parquet",
+      "type": "count",
+      "window": "90d"
+    },
+    {
+      "feature": "tag_wound_care_30d",
+      "readable": "Document tag (wound care 30d)",
+      "group": "Document tag",
+      "source": "document_tags.parquet",
+      "type": "count",
+      "window": "30d"
+    },
+    {
+      "feature": "tag_wound_care_90d",
+      "readable": "Document tag (wound care 90d)",
+      "group": "Document tag",
+      "source": "document_tags.parquet",
+      "type": "count",
+      "window": "90d"
+    },
+    {
+      "feature": "tag_nutrition_plan_30d",
+      "readable": "Document tag (nutrition plan 30d)",
+      "group": "Document tag",
+      "source": "document_tags.parquet",
+      "type": "count",
+      "window": "30d"
+    },
+    {
+      "feature": "tag_nutrition_plan_90d",
+      "readable": "Document tag (nutrition plan 90d)",
+      "group": "Document tag",
+      "source": "document_tags.parquet",
+      "type": "count",
+      "window": "90d"
+    },
+    {
+      "feature": "tag_physician_notification_30d",
+      "readable": "Document tag (physician notification 30d)",
+      "group": "Document tag",
+      "source": "document_tags.parquet",
+      "type": "count",
+      "window": "30d"
+    },
+    {
+      "feature": "tag_physician_notification_90d",
+      "readable": "Document tag (physician notification 90d)",
+      "group": "Document tag",
+      "source": "document_tags.parquet",
+      "type": "count",
+      "window": "90d"
+    },
+    {
+      "feature": "tag_family_responsible_30d",
+      "readable": "Document tag (family responsible 30d)",
+      "group": "Document tag",
+      "source": "document_tags.parquet",
+      "type": "count",
+      "window": "30d"
+    },
+    {
+      "feature": "tag_family_responsible_90d",
+      "readable": "Document tag (family responsible 90d)",
+      "group": "Document tag",
+      "source": "document_tags.parquet",
+      "type": "count",
+      "window": "90d"
+    },
+    {
+      "feature": "tag_assistance_needed_30d",
+      "readable": "Document tag (assistance needed 30d)",
+      "group": "Document tag",
+      "source": "document_tags.parquet",
+      "type": "count",
+      "window": "30d"
+    },
+    {
+      "feature": "tag_assistance_needed_90d",
+      "readable": "Document tag (assistance needed 90d)",
+      "group": "Document tag",
+      "source": "document_tags.parquet",
+      "type": "count",
+      "window": "90d"
+    },
+    {
+      "feature": "tag_hypertension_30d",
+      "readable": "Document tag (hypertension 30d)",
+      "group": "Document tag",
+      "source": "document_tags.parquet",
+      "type": "count",
+      "window": "30d"
+    },
+    {
+      "feature": "tag_hypertension_90d",
+      "readable": "Document tag (hypertension 90d)",
+      "group": "Document tag",
+      "source": "document_tags.parquet",
+      "type": "count",
+      "window": "90d"
+    },
+    {
+      "feature": "tag_antibiotic_therapy_30d",
+      "readable": "Document tag (antibiotic therapy 30d)",
+      "group": "Document tag",
+      "source": "document_tags.parquet",
+      "type": "count",
+      "window": "30d"
+    },
+    {
+      "feature": "tag_antibiotic_therapy_90d",
+      "readable": "Document tag (antibiotic therapy 90d)",
+      "group": "Document tag",
+      "source": "document_tags.parquet",
+      "type": "count",
+      "window": "90d"
+    },
+    {
+      "feature": "needs_active_count",
+      "readable": "Active care needs",
+      "group": "Needs",
+      "source": "needs.parquet",
+      "type": "count",
+      "window": "as of index"
+    }
+  ],
+  "distributions": {
+    "outpatient": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 1.0,
+      "nonzero_pct": 4.516118031221492
+    },
+    "age_years": {
+      "min": 0.0,
+      "p25": 66.86379192334017,
+      "median": 77.10061601642711,
+      "p75": 85.2375085557837,
+      "p95": 94.22450376454483,
+      "max": 105.13073237508556,
+      "nonzero_pct": 99.93690905525573
+    },
+    "days_since_admission": {
+      "min": -1.0,
+      "p25": 180.0,
+      "median": 480.0,
+      "p75": 1032.0,
+      "p95": 2521.0,
+      "max": 7248.0,
+      "nonzero_pct": 99.88745939586158
+    },
+    "dx_active_count": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 10.0,
+      "p75": 19.0,
+      "p95": 33.0,
+      "max": 75.0,
+      "nonzero_pct": 71.58435003538209
+    },
+    "dx_distinct_icd": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 10.0,
+      "p75": 18.0,
+      "p95": 31.0,
+      "max": 67.0,
+      "nonzero_pct": 71.58435003538209
+    },
+    "vital_count_30d": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 66.0,
+      "p95": 278.0,
+      "max": 913.0,
+      "nonzero_pct": 33.4390532947967
+    },
+    "vital_count_90d": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 154.0,
+      "p95": 754.0,
+      "max": 2530.0,
+      "nonzero_pct": 34.014545020504556
+    },
+    "med_count_30d": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 4262.0,
+      "nonzero_pct": 3.816149576693864
+    },
+    "med_on_time_rate_30d": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 1.0,
+      "nonzero_pct": 3.8144444160251
+    },
+    "med_count_90d": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 11300.0,
+      "nonzero_pct": 4.308088429632282
+    },
+    "med_on_time_rate_90d": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 1.0,
+      "nonzero_pct": 4.3063832689635175
+    },
+    "adl_count_30d": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 3580.0,
+      "nonzero_pct": 1.061462516305599
+    },
+    "adl_count_90d": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 7840.0,
+      "nonzero_pct": 1.0955657296808792
+    },
+    "adl_change_sum_30d": {
+      "min": -127.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 102.0,
+      "nonzero_pct": 0.9881406075487462
+    },
+    "adl_change_sum_90d": {
+      "min": -228.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 199.0,
+      "nonzero_pct": 1.0401480079460488
+    },
+    "gg_count_30d": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 3094.0,
+      "nonzero_pct": 1.2652292162228986
+    },
+    "gg_count_90d": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 8933.0,
+      "nonzero_pct": 1.2942169475918868
+    },
+    "gg_response_code_mean_30d": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 20.06,
+      "nonzero_pct": 1.2652292162228986
+    },
+    "gg_response_code_mean_90d": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 20.06,
+      "nonzero_pct": 1.2942169475918868
+    },
+    "tag_pain_progress_note_30d": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 274.0,
+      "nonzero_pct": 2.3616475262381598
+    },
+    "tag_pain_progress_note_90d": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 314.0,
+      "nonzero_pct": 3.2730559036925255
+    },
+    "tag_wound_care_30d": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 151.0,
+      "nonzero_pct": 2.3266917325284973
+    },
+    "tag_wound_care_90d": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 184.0,
+      "nonzero_pct": 3.5365032270165657
+    },
+    "tag_nutrition_plan_30d": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 35.0,
+      "nonzero_pct": 2.5858761541806277
+    },
+    "tag_nutrition_plan_90d": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 44.0,
+      "nonzero_pct": 3.991781125576557
+    },
+    "tag_physician_notification_30d": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 145.0,
+      "nonzero_pct": 3.10509757781927
+    },
+    "tag_physician_notification_90d": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 145.0,
+      "nonzero_pct": 4.288479081941496
+    },
+    "tag_family_responsible_30d": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 150.0,
+      "nonzero_pct": 3.112770800828708
+    },
+    "tag_family_responsible_90d": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 150.0,
+      "nonzero_pct": 4.236471681544193
+    },
+    "tag_assistance_needed_30d": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 247.0,
+      "nonzero_pct": 1.5678952349285111
+    },
+    "tag_assistance_needed_90d": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 255.0,
+      "nonzero_pct": 2.5841709935118637
+    },
+    "tag_hypertension_30d": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 219.0,
+      "nonzero_pct": 2.2158562890588365
+    },
+    "tag_hypertension_90d": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 239.0,
+      "nonzero_pct": 2.7231415880161305
+    },
+    "tag_antibiotic_therapy_30d": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 147.0,
+      "nonzero_pct": 1.315531455951437
+    },
+    "tag_antibiotic_therapy_90d": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 147.0,
+      "nonzero_pct": 2.1314508359550177
+    },
+    "needs_active_count": {
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 4.0,
+      "p75": 60.0,
+      "p95": 181.0,
+      "max": 551.0,
+      "nonzero_pct": 56.528633910530225
+    }
+  },
+  "tag_sparsity_30d": {
+    "tag_pain_progress_note_30d": 2.3616475262381598,
+    "tag_wound_care_30d": 2.3266917325284973,
+    "tag_nutrition_plan_30d": 2.5858761541806277,
+    "tag_physician_notification_30d": 3.10509757781927,
+    "tag_family_responsible_30d": 3.112770800828708,
+    "tag_assistance_needed_30d": 1.5678952349285111,
+    "tag_hypertension_30d": 2.2158562890588365,
+    "tag_antibiotic_therapy_30d": 1.315531455951437
+  },
+  "example_row": {
+    "resident_id": "d9631253\u2026",
+    "index_date": "2023-11-26",
+    "outpatient": 0,
+    "age_years": 79.0363,
+    "days_since_admission": 446,
+    "dx_active_count": 27.0,
+    "dx_distinct_icd": 27.0,
+    "vital_count_30d": 225.0,
+    "vital_count_90d": 398.0,
+    "med_count_30d": 797.0,
+    "med_on_time_rate_30d": 0.3752,
+    "med_count_90d": 1628.0,
+    "med_on_time_rate_90d": 0.3891,
+    "adl_count_30d": 0.0,
+    "adl_count_90d": 0.0,
+    "adl_change_sum_30d": 0.0,
+    "adl_change_sum_90d": 0.0,
+    "gg_count_30d": 0.0,
+    "gg_count_90d": 0.0,
+    "gg_response_code_mean_30d": 0.0,
+    "gg_response_code_mean_90d": 0.0,
+    "tag_pain_progress_note_30d": 0.0,
+    "tag_pain_progress_note_90d": 0.0,
+    "tag_wound_care_30d": 1.0,
+    "tag_wound_care_90d": 4.0,
+    "tag_nutrition_plan_30d": 0.0,
+    "tag_nutrition_plan_90d": 0.0,
+    "tag_physician_notification_30d": 5.0,
+    "tag_physician_notification_90d": 8.0,
+    "tag_family_responsible_30d": 2.0,
+    "tag_family_responsible_90d": 6.0,
+    "tag_assistance_needed_30d": 0.0,
+    "tag_assistance_needed_90d": 0.0,
+    "tag_hypertension_30d": 0.0,
+    "tag_hypertension_90d": 0.0,
+    "tag_antibiotic_therapy_30d": 0.0,
+    "tag_antibiotic_therapy_90d": 0.0,
+    "needs_active_count": 381.0
+  }
+}

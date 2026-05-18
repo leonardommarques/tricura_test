@@ -1,0 +1,44 @@
+{
+  "forecast_month": "2025-02",
+  "current_expected_total": 370945.3488372093,
+  "after_intervention_total": 306606.27906976745,
+  "savings": 64339.06976744183,
+  "savings_pct": 17.3446223194666,
+  "intervention_types": [
+    "Fall",
+    "Wound"
+  ],
+  "reduction_pct": 0.2,
+  "test_implied_cost": {
+    "n_test": 35289,
+    "baseline_total": 169910680.1408698,
+    "optimized_total": 27260722.958630957,
+    "savings": 142649957.18223885,
+    "savings_pct": 83.9558508411422,
+    "per_label": {
+      "Fall": {
+        "baseline_cost": 60940452.13620457,
+        "optimized_cost": 10770435.660584617,
+        "savings": 50170016.47561996,
+        "savings_pct": 82.32629512411194
+      },
+      "Wound": {
+        "baseline_cost": 69336220.6659739,
+        "optimized_cost": 9469917.225561019,
+        "savings": 59866303.44041288,
+        "savings_pct": 86.34203431539457
+      },
+      "Altercation": {
+        "baseline_cost": 39634007.338691324,
+        "optimized_cost": 7020370.0724853175,
+        "savings": 32613637.266206007,
+        "savings_pct": 82.28700415657458
+      }
+    },
+    "cost_map": {
+      "Fall": 3500.0,
+      "Wound": 4000.0,
+      "Altercation": 2500.0
+    }
+  }
+}

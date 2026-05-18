@@ -19,7 +19,7 @@ Claims break down roughly as follows:
 
 ## Business Challenge
 
-Our margins depend on keeping actual claims below the premiums we collect. Raising premiums isn't sustainable without losing clients, so the lever we're exploring is reducing the frequency and severity of incidents at the facilities we insure.
+Our margins depend on keeping actual claims below the premiums we collect. Raising premiums isn't sustainable without losing clients, so the lever we're exploring is **reducing the frequency and severity of incidents** at the facilities we insure.
 
 ## Goal
 
@@ -28,6 +28,8 @@ Build a working model that addresses this business challenge. You decide what to
 ## Data
 
 The `data/` folder contains anonymized records from our backend system, covering a sample of residents across skilled nursing facilities.
+
+See [docs/FEATURES.md](docs/FEATURES.md) for definitions of all 36 model input features (with examples and charts).
 
 ## Deliverable
 

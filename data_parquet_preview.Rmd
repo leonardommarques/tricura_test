@@ -1,0 +1,33 @@
+---
+title: "Data folder — parquet preview"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+Load each `.parquet` file under `data/` and show the first five rows.
+
+```{r libraries}
+library(tidyverse)
+library(arrow)
+library(fs)
+```
+
+```{r preview-parquet-files}
+data_dir <- path("data")
+
+parquet_paths <- dir_ls(data_dir, glob = "*.parquet") |> sort()
+
+walk(parquet_paths, function(path) {
+  cat("\n\n## ", path_file(path), "\n\n", sep = "")
+  read_parquet(path) |>
+    as_tibble() |>
+    head(5) |>
+    print()
+})
+```

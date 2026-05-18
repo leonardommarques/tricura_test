@@ -1,0 +1,46 @@
+{
+  "description": "Weekly resident-time panel (index every W). Chronological split: train < 2023-09-10 00:00:00, validation [2023-09-10 00:00:00, 2024-03-03 00:00:00), test >= 2024-03-03 00:00:00. Validation is used for hyperparameter tuning / early stopping; test is held out for final metrics. Labels = any incident of each type in the next 30 days.",
+  "horizon_days": 30,
+  "index_freq": "W",
+  "label_types": [
+    "Fall",
+    "Wound",
+    "Altercation"
+  ],
+  "test_time_fraction": 0.3,
+  "val_frac_of_trainval": 0.2,
+  "train_time_fraction": 0.5599999999999999,
+  "val_time_fraction": 0.7,
+  "cutoff_val_start": "2023-09-10 00:00:00",
+  "cutoff_test_start": "2024-03-03 00:00:00",
+  "train": {
+    "n_rows": 65596,
+    "n_residents": 723,
+    "date_min": "2005-02-27 00:00:00",
+    "date_max": "2023-09-03 00:00:00",
+    "positive_rate_Fall": 0.006524788096835173,
+    "positive_rate_Wound": 0.0015549728641990365,
+    "positive_rate_Altercation": 0.0007774864320995183,
+    "positive_rate_any": 0.008354167937069333
+  },
+  "validation": {
+    "n_rows": 16406,
+    "n_residents": 874,
+    "date_min": "2023-09-10 00:00:00",
+    "date_max": "2024-02-25 00:00:00",
+    "positive_rate_Fall": 0.07137632573448738,
+    "positive_rate_Wound": 0.02633182981835914,
+    "positive_rate_Altercation": 0.010118249420943557,
+    "positive_rate_any": 0.10106058758990613
+  },
+  "test": {
+    "n_rows": 35289,
+    "n_residents": 1459,
+    "date_min": "2024-03-03 00:00:00",
+    "date_max": "2024-12-29 00:00:00",
+    "positive_rate_Fall": 0.07886310181643005,
+    "positive_rate_Wound": 0.02731729434101278,
+    "positive_rate_Altercation": 0.00878460710136303,
+    "positive_rate_any": 0.10731389384794128
+  }
+}

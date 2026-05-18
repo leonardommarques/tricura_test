@@ -1,0 +1,3 @@
+scenario,expected_cost
+Test implied cost (baseline),169910680.1408698
+Test implied cost (optimized),27260722.958630957

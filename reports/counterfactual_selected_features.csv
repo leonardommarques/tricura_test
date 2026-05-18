@@ -1,0 +1,11 @@
+feature,feature_readable,incident_type,coefficient,abs_coefficient,direction,grid_direction
+dx_distinct_icd,Distinct ICD codes,Wound,1.316029321308707,1.316029321308707,increases_risk,increase
+vital_count_30d,Vital sign events (30d),Fall,1.0247124629955686,1.0247124629955686,increases_risk,increase
+tag_physician_notification_90d,Document tag (physician notification 90d),Altercation,0.5851902975196273,0.5851902975196273,increases_risk,increase
+age_years,Age at index (years),Fall,0.5349260996094956,0.5349260996094956,increases_risk,increase
+vital_count_90d,Vital sign events (90d),Altercation,0.5037520046336298,0.5037520046336298,increases_risk,increase
+dx_active_count,Active diagnoses,Wound,-0.959020190265198,0.959020190265198,decreases_risk,decrease
+outpatient,Outpatient flag,Altercation,-0.7550605995226373,0.7550605995226373,decreases_risk,decrease
+days_since_admission,Days since admission,Altercation,-0.6059291684987346,0.6059291684987346,decreases_risk,decrease
+med_on_time_rate_90d,Medication on-time rate (90d),Altercation,-0.5956801812676229,0.5956801812676229,decreases_risk,decrease
+tag_wound_care_90d,Document tag (wound care 90d),Altercation,-0.592780462141826,0.592780462141826,decreases_risk,decrease

@@ -1,0 +1,31 @@
+{
+  "description": "Percentile grid on test subsample: top-5 risk-increasing and top-5 risk-decreasing logistic features (all incident types). Per row, try train-distribution percentiles stepping by 10 (increase \u2192 floor p25, decrease \u2192 ceiling p75). Champion model (logistic) scores adjusted rows only (no retraining).",
+  "champion_model": "logistic",
+  "feature_drivers_model": "logistic",
+  "n_test_sample": 5000,
+  "n_test_total": 35289,
+  "n_features_increase": 5,
+  "n_features_decrease": 5,
+  "percentile_step": 10,
+  "percentile_floor": 25,
+  "percentile_ceiling": 75,
+  "overall_mean_prob_baseline": 0.48394819302473174,
+  "overall_mean_prob_optimized": 0.0755671717282568,
+  "per_label": {
+    "Fall": {
+      "mean_predicted_prob_baseline": 0.49596675111020905,
+      "mean_predicted_prob_optimized": 0.08145618390372289,
+      "pct_reduction": 83.57628132906383
+    },
+    "Wound": {
+      "mean_predicted_prob_baseline": 0.4975574719494114,
+      "mean_predicted_prob_optimized": 0.06610910211285555,
+      "pct_reduction": 86.7132731714705
+    },
+    "Altercation": {
+      "mean_predicted_prob_baseline": 0.4583203560145748,
+      "mean_predicted_prob_optimized": 0.07913622916819196,
+      "pct_reduction": 82.73342474762883
+    }
+  }
+}
