@@ -1,31 +1,31 @@
 incident_type,feature,feature_readable,coefficient,direction,abs_coefficient
-Altercation,dx_distinct_icd,Distinct ICD codes,0.8487560098587326,increases_risk,0.8487560098587326
-Altercation,outpatient,Outpatient flag,-0.7550605995226373,decreases_risk,0.7550605995226373
-Altercation,dx_active_count,Active diagnoses,-0.7535598292818478,decreases_risk,0.7535598292818478
-Altercation,days_since_admission,Days since admission,-0.6059291684987346,decreases_risk,0.6059291684987346
-Altercation,med_on_time_rate_90d,Medication on-time rate (90d),-0.5956801812676229,decreases_risk,0.5956801812676229
-Altercation,tag_wound_care_90d,Document tag (wound care 90d),-0.592780462141826,decreases_risk,0.592780462141826
-Altercation,tag_physician_notification_90d,Document tag (physician notification 90d),0.5851902975196273,increases_risk,0.5851902975196273
-Altercation,tag_family_responsible_90d,Document tag (family responsible 90d),-0.526937936945819,decreases_risk,0.526937936945819
-Altercation,vital_count_30d,Vital sign events (30d),0.5204733243294993,increases_risk,0.5204733243294993
-Altercation,vital_count_90d,Vital sign events (90d),0.5037520046336298,increases_risk,0.5037520046336298
-Fall,vital_count_30d,Vital sign events (30d),1.0247124629955686,increases_risk,1.0247124629955686
-Fall,dx_distinct_icd,Distinct ICD codes,0.9780598252194637,increases_risk,0.9780598252194637
-Fall,dx_active_count,Active diagnoses,-0.7263640157253713,decreases_risk,0.7263640157253713
-Fall,outpatient,Outpatient flag,-0.6997362141487364,decreases_risk,0.6997362141487364
-Fall,age_years,Age at index (years),0.5349260996094956,increases_risk,0.5349260996094956
-Fall,days_since_admission,Days since admission,-0.491416852180682,decreases_risk,0.491416852180682
-Fall,tag_wound_care_30d,Document tag (wound care 30d),-0.3269119658399067,decreases_risk,0.3269119658399067
-Fall,needs_active_count,Active care needs,0.26239897026292225,increases_risk,0.26239897026292225
-Fall,tag_pain_progress_note_30d,Document tag (pain progress note 30d),-0.19396146856710322,decreases_risk,0.19396146856710322
-Fall,med_on_time_rate_30d,Medication on-time rate (30d),0.1426407929493531,increases_risk,0.1426407929493531
-Wound,dx_distinct_icd,Distinct ICD codes,1.316029321308707,increases_risk,1.316029321308707
-Wound,dx_active_count,Active diagnoses,-0.9590201902651981,decreases_risk,0.9590201902651981
-Wound,outpatient,Outpatient flag,-0.6770489605249838,decreases_risk,0.6770489605249838
-Wound,vital_count_30d,Vital sign events (30d),0.6600957530916717,increases_risk,0.6600957530916717
-Wound,tag_pain_progress_note_90d,Document tag (pain progress note 90d),-0.5435007494327223,decreases_risk,0.5435007494327223
-Wound,med_on_time_rate_30d,Medication on-time rate (30d),0.35326642916445655,increases_risk,0.35326642916445655
-Wound,vital_count_90d,Vital sign events (90d),0.3449036899222371,increases_risk,0.3449036899222371
-Wound,med_count_30d,Medication administrations (30d),-0.2838857032028571,decreases_risk,0.2838857032028571
-Wound,needs_active_count,Active care needs,0.27174768292942975,increases_risk,0.27174768292942975
-Wound,med_on_time_rate_90d,Medication on-time rate (90d),-0.2657703058016439,decreases_risk,0.2657703058016439
+Altercation,vital_bp_systolic_diastolic_mean_90d,Vital (bp systolic diastolic mean 90d),1.212362577591522,increases_risk,1.212362577591522
+Altercation,days_since_admission,Days since admission,-1.0825357853178836,decreases_risk,1.0825357853178836
+Altercation,tag_physician_notification_90d,Document tag (physician notification 90d),0.7349573296449904,increases_risk,0.7349573296449904
+Altercation,vital_temperature_max_30d,Vital (temperature max 30d),0.71444429422344,increases_risk,0.71444429422344
+Altercation,tag_wound_care_90d,Document tag (wound care 90d),-0.7059314148192153,decreases_risk,0.7059314148192153
+Altercation,vital_bp_systolic_count_90d,Vital (bp systolic count 90d),-0.6913056851306411,decreases_risk,0.6913056851306411
+Altercation,vital_temperature_count_90d,Vital (temperature count 90d),0.671667938080798,increases_risk,0.671667938080798
+Altercation,outpatient,Outpatient flag,-0.6481835935938661,decreases_risk,0.6481835935938661
+Altercation,vital_o2_sats_min_90d,Vital (o2 sats min 90d),0.6111846620240046,increases_risk,0.6111846620240046
+Altercation,vital_bp_systolic_count_30d,Vital (bp systolic count 30d),-0.5909966051646028,decreases_risk,0.5909966051646028
+Fall,outpatient,Outpatient flag,-0.6444808576050188,decreases_risk,0.6444808576050188
+Fall,dx_distinct_icd,Distinct ICD codes,0.6219794655540279,increases_risk,0.6219794655540279
+Fall,days_since_admission,Days since admission,-0.5917079854021747,decreases_risk,0.5917079854021747
+Fall,age_years,Age at index (years),0.5618704369539076,increases_risk,0.5618704369539076
+Fall,dx_active_count,Active diagnoses,-0.48462907263584665,decreases_risk,0.48462907263584665
+Fall,vital_o2_sats_mean_90d,Vital (o2 sats mean 90d),0.4604782327911949,increases_risk,0.4604782327911949
+Fall,vital_temperature_max_30d,Vital (temperature max 30d),0.3505906602521067,increases_risk,0.3505906602521067
+Fall,vital_weight_last_90d,Vital (weight last 90d),0.3432692751901961,increases_risk,0.3432692751901961
+Fall,tag_wound_care_30d,Document tag (wound care 30d),-0.33702459170795235,decreases_risk,0.33702459170795235
+Fall,vital_blood_sugar_max_90d,Vital (blood sugar max 90d),-0.33220807752807935,decreases_risk,0.33220807752807935
+Wound,vital_respiration_count_90d,Vital (respiration count 90d),0.756830427452036,increases_risk,0.756830427452036
+Wound,dx_distinct_icd,Distinct ICD codes,0.6751606806371749,increases_risk,0.6751606806371749
+Wound,outpatient,Outpatient flag,-0.5624352264447904,decreases_risk,0.5624352264447904
+Wound,tag_pain_progress_note_90d,Document tag (pain progress note 90d),-0.5492165784305718,decreases_risk,0.5492165784305718
+Wound,vital_bp_systolic_max_30d,Vital (bp systolic max 30d),0.5447747381411808,increases_risk,0.5447747381411808
+Wound,vital_o2_sats_count_90d,Vital (o2 sats count 90d),-0.5399889360014517,decreases_risk,0.5399889360014517
+Wound,vital_bp_systolic_count_90d,Vital (bp systolic count 90d),-0.513713215240938,decreases_risk,0.513713215240938
+Wound,vital_temperature_max_30d,Vital (temperature max 30d),0.4845117382318387,increases_risk,0.4845117382318387
+Wound,dx_active_count,Active diagnoses,-0.47147021875525624,decreases_risk,0.47147021875525624
+Wound,vital_blood_sugar_max_30d,Vital (blood sugar max 30d),0.46896667217606336,increases_risk,0.46896667217606336

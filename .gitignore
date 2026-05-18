@@ -6,3 +6,4 @@ artifacts/*.parquet
 .venv/
 *.egg-info/
 *.parquet
+data/*.parquet
