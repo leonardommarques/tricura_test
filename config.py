@@ -64,6 +64,13 @@ TRAIN_TIME_FRACTION = (1.0 - TEST_TIME_FRACTION) * (1.0 - VAL_FRAC_OF_TRAINVAL) 
 VAL_TIME_FRACTION = 1.0 - TEST_TIME_FRACTION  # cumulative quantile end of val (~0.70)
 
 RANDOM_STATE = 42
+
+# Train-level class balancing (imbalanced-learn RandomUnderSampler, per label)
+TRAIN_RANDOM_UNDERSAMPLE = True  # set True to enable
+# When True, logistic class_weight and XGB scale_pos_weight are turned off
+TRAIN_RANDOM_UNDERSAMPLE_DISABLE_WEIGHTS = True
+# KNN uses y_any (any incident) when undersampling; other models use per-label
+
 MODEL_NAME = "ovr_logistic"  # legacy; champion name written at train time
 
 BENCHMARK_MODELS = ("logistic", "xgboost", "knn", "tpot")

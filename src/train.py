@@ -241,10 +241,64 @@ def write_split_info(
     return info
 
 
+def _use_balanced_weights() -> bool:
+    if (
+        config.TRAIN_RANDOM_UNDERSAMPLE
+        and config.TRAIN_RANDOM_UNDERSAMPLE_DISABLE_WEIGHTS
+    ):
+        return False
+    return True
+
+
 def _scale_pos_weight(y: pd.Series) -> float:
+    if not _use_balanced_weights():
+        return 1.0
     pos = float(y.sum())
     neg = float(len(y) - pos)
     return neg / max(pos, 1.0)
+
+
+def _undersample_row_indices(y: pd.Series) -> np.ndarray:
+    n = len(y)
+    if not config.TRAIN_RANDOM_UNDERSAMPLE:
+        return np.arange(n)
+    if y.nunique() < 2:
+        return np.arange(n)
+    from imblearn.under_sampling import RandomUnderSampler
+
+    idx = np.arange(n).reshape(-1, 1)
+    rus = RandomUnderSampler(random_state=config.RANDOM_STATE)
+    idx_res, _ = rus.fit_resample(idx, y)
+    return idx_res.ravel()
+
+
+def _maybe_undersample_train(
+    X: pd.DataFrame,
+    y: pd.Series,
+) -> tuple[pd.DataFrame, pd.Series]:
+    """Per-label random undersample to 1:1; no-op if flag off or single class."""
+    sel = _undersample_row_indices(y)
+    if len(sel) == len(y):
+        return X, y
+    return (
+        X.iloc[sel].reset_index(drop=True),
+        y.iloc[sel].reset_index(drop=True),
+    )
+
+
+def _maybe_undersample_train_multilabel(
+    X: pd.DataFrame,
+    y: pd.DataFrame,
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """KNN: undersample using y_any (any incident in horizon)."""
+    y_any = y.max(axis=1).astype(int)
+    sel = _undersample_row_indices(y_any)
+    if len(sel) == len(y):
+        return X, y
+    return (
+        X.iloc[sel].reset_index(drop=True),
+        y.iloc[sel].reset_index(drop=True),
+    )
 
 
 class FittedOvRWrapper(BaseEstimator, ClassifierMixin):
@@ -271,9 +325,44 @@ class FittedOvRWrapper(BaseEstimator, ClassifierMixin):
         return np.column_stack(cols)
 
 
+def _build_logistic_single_pipeline(C: float = 1.0) -> Pipeline:
+    class_weight = "balanced" if _use_balanced_weights() else None
+    return Pipeline(
+        [
+            ("scale", StandardScaler()),
+            (
+                "clf",
+                LogisticRegression(
+                    C=C,
+                    max_iter=1000,
+                    class_weight=class_weight,
+                    random_state=config.RANDOM_STATE,
+                ),
+            ),
+        ]
+    )
+
+
+def _fit_logistic_per_label(
+    X: pd.DataFrame,
+    y: pd.DataFrame,
+    C: float,
+) -> FittedOvRWrapper:
+    estimators = []
+    for col in y.columns:
+        X_fit, y_fit = _maybe_undersample_train(X, y[col])
+        pipe = _build_logistic_single_pipeline(C=C)
+        pipe.fit(X_fit, y_fit)
+        estimators.append(pipe)
+    wrapper = FittedOvRWrapper(estimators=estimators)
+    wrapper.fit(X.iloc[:1], y.iloc[:1])
+    return wrapper
+
+
 def build_pipeline(model_name: str, **kwargs: Any) -> Pipeline:
     if model_name == "logistic":
         C = kwargs.get("C", 1.0)
+        class_weight = "balanced" if _use_balanced_weights() else None
         return Pipeline(
             [
                 ("scale", StandardScaler()),
@@ -283,7 +372,7 @@ def build_pipeline(model_name: str, **kwargs: Any) -> Pipeline:
                         LogisticRegression(
                             C=C,
                             max_iter=1000,
-                            class_weight="balanced",
+                            class_weight=class_weight,
                             random_state=config.RANDOM_STATE,
                         )
                     ),
@@ -371,16 +460,28 @@ def fit_logistic_with_validation(
 ) -> tuple[Pipeline, dict]:
     best_c = 1.0
     best_recall = -1.0
-    for C in config.LOGISTIC_C_GRID:
-        pipe = build_pipeline("logistic", C=C)
-        pipe.fit(X_train, y_train)
-        recall = _val_macro_recall(pipe, X_val, y_val)
-        if recall > best_recall:
-            best_recall = recall
-            best_c = C
 
-    final_pipe = build_pipeline("logistic", C=best_c)
-    final_pipe.fit(X_trainval, y_trainval)
+    if config.TRAIN_RANDOM_UNDERSAMPLE:
+        for C in config.LOGISTIC_C_GRID:
+            wrapper = _fit_logistic_per_label(X_train, y_train, C)
+            pipe = Pipeline([("clf", wrapper)])
+            recall = _val_macro_recall(pipe, X_val, y_val)
+            if recall > best_recall:
+                best_recall = recall
+                best_c = C
+        final_wrapper = _fit_logistic_per_label(X_trainval, y_trainval, best_c)
+        final_pipe = Pipeline([("clf", final_wrapper)])
+    else:
+        for C in config.LOGISTIC_C_GRID:
+            pipe = build_pipeline("logistic", C=C)
+            pipe.fit(X_train, y_train)
+            recall = _val_macro_recall(pipe, X_val, y_val)
+            if recall > best_recall:
+                best_recall = recall
+                best_c = C
+        final_pipe = build_pipeline("logistic", C=best_c)
+        final_pipe.fit(X_trainval, y_trainval)
+
     tuning = {"best_C": best_c, "val_macro_recall": best_recall}
     return final_pipe, tuning
 
@@ -409,11 +510,12 @@ def fit_xgboost_with_validation(
     for col in y_train.columns:
         y_tr = y_train[col]
         y_va = y_val[col]
+        X_tr, y_tr_fit = _maybe_undersample_train(X_train, y_tr)
         est = clone(base)
         est.set_params(scale_pos_weight=_scale_pos_weight(y_tr))
         est.fit(
-            X_train,
-            y_tr,
+            X_tr,
+            y_tr_fit,
             eval_set=[(X_val, y_va)],
             verbose=False,
         )
@@ -423,6 +525,7 @@ def fit_xgboost_with_validation(
     final_estimators = []
     for col, n_est in zip(y_train.columns, best_iters):
         y_tv = y_trainval[col]
+        X_tv, y_tv_fit = _maybe_undersample_train(X_trainval, y_tv)
         est = XGBClassifier(
             n_estimators=n_est,
             max_depth=config.XGB_MAX_DEPTH,
@@ -434,7 +537,7 @@ def fit_xgboost_with_validation(
             n_jobs=-1,
             scale_pos_weight=_scale_pos_weight(y_tv),
         )
-        est.fit(X_trainval, y_tv, verbose=False)
+        est.fit(X_tv, y_tv_fit, verbose=False)
         final_estimators.append(est)
 
     wrapper = FittedOvRWrapper(estimators=final_estimators)
@@ -453,14 +556,15 @@ def fit_tpot_with_validation(
     y_trainval: pd.DataFrame,
 ) -> tuple[Pipeline, dict]:
     """One TPOTClassifier per label; CV holdout = validation (recall). Refit best on train+val."""
-    test_fold = np.array([0] * len(X_train) + [1] * len(X_val))
-    cv = PredefinedSplit(test_fold)
-    X_tv = pd.concat([X_train, X_val], axis=0)
     final_estimators = []
     per_label: dict = {}
 
     for col in y_train.columns:
-        y_tv = pd.concat([y_train[col], y_val[col]], axis=0)
+        X_tr, y_tr = _maybe_undersample_train(X_train, y_train[col])
+        X_tv = pd.concat([X_tr, X_val], axis=0)
+        y_tv = pd.concat([y_tr, y_val[col]], axis=0)
+        test_fold = np.array([0] * len(X_tr) + [1] * len(X_val))
+        cv = PredefinedSplit(test_fold)
         tpot = TPOTClassifier(
             scorers=["recall"],
             cv=cv,
@@ -472,7 +576,8 @@ def fit_tpot_with_validation(
         )
         tpot.fit(X_tv, y_tv)
         best = clone(tpot.fitted_pipeline_)
-        best.fit(X_trainval, y_trainval[col])
+        X_final, y_final = _maybe_undersample_train(X_trainval, y_trainval[col])
+        best.fit(X_final, y_final)
         final_estimators.append(best)
         per_label[str(col)] = {
             "exported_pipeline": str(tpot.fitted_pipeline_),
@@ -493,7 +598,10 @@ def fit_knn_with_validation(
     X_trainval: pd.DataFrame,
     y_trainval: pd.DataFrame,
 ) -> tuple[Pipeline, dict]:
-    X_fit, y_fit = _knn_train_sample(X_train, y_train)
+    if config.TRAIN_RANDOM_UNDERSAMPLE:
+        X_fit, y_fit = _maybe_undersample_train_multilabel(X_train, y_train)
+    else:
+        X_fit, y_fit = _knn_train_sample(X_train, y_train)
     best_k = config.KNN_N_NEIGHBORS
     best_recall = -1.0
     for k in config.KNN_N_NEIGHBORS_GRID:
@@ -504,7 +612,10 @@ def fit_knn_with_validation(
             best_recall = recall
             best_k = k
 
-    X_final, y_final = _knn_train_sample(X_trainval, y_trainval)
+    if config.TRAIN_RANDOM_UNDERSAMPLE:
+        X_final, y_final = _maybe_undersample_train_multilabel(X_trainval, y_trainval)
+    else:
+        X_final, y_final = _knn_train_sample(X_trainval, y_trainval)
     final_pipe = build_pipeline("knn", n_neighbors=best_k)
     final_pipe.fit(X_final, y_final)
     tuning = {"best_n_neighbors": best_k, "val_macro_recall": best_recall}
@@ -539,6 +650,12 @@ def fit_model_with_validation(
     raise ValueError(f"Unknown model: {model_name}")
 
 
+def _logistic_coefs(estimator: Any) -> np.ndarray:
+    if hasattr(estimator, "named_steps"):
+        return estimator.named_steps["clf"].coef_.ravel()
+    return estimator.coef_.ravel()
+
+
 def export_feature_effects(
     pipe: Pipeline,
     feature_cols: list[str],
@@ -546,7 +663,7 @@ def export_feature_effects(
     clf = pipe.named_steps["clf"]
     rows = []
     for i, lt in enumerate(config.LABEL_TYPES):
-        coefs = clf.estimators_[i].coef_.ravel()
+        coefs = _logistic_coefs(clf.estimators_[i])
         for feat, c in zip(feature_cols, coefs):
             rows.append(
                 {
@@ -719,6 +836,10 @@ def train_and_evaluate() -> dict:
     report = {
         "champion_model": champion_name,
         "champion_selection": "highest test macro_recall (tie-break: macro_f1, macro_roc_auc)",
+        "train_random_undersample": config.TRAIN_RANDOM_UNDERSAMPLE,
+        "train_random_undersample_disable_weights": (
+            config.TRAIN_RANDOM_UNDERSAMPLE_DISABLE_WEIGHTS
+        ),
         "benchmark_ranking": ranking,
         "horizon_days": config.HORIZON_DAYS,
         "label_types": config.LABEL_TYPES,
