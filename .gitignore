@@ -5,3 +5,4 @@ models/
 artifacts/*.parquet
 .venv/
 *.egg-info/
+*.parquet
