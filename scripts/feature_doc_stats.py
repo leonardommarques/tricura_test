@@ -56,18 +56,29 @@ def feature_meta(name: str) -> dict:
     elif "rate" in name:
         src, ftype = "medications.parquet", "rate"
         window = "30d" if "_30d" in name else "90d"
-    elif "change_sum" in name:
-        src, ftype = "adl_responses.parquet", "sum"
-        window = "30d" if "_30d" in name else "90d"
-    elif "response_code_mean" in name:
-        src, ftype = "gg_responses.parquet", "mean"
-        window = "30d" if "_30d" in name else "90d"
     elif name.startswith("med_"):
         src = "medications.parquet"
         ftype = "count" if "count" in name else "rate"
         window = "30d" if "_30d" in name else "90d"
     elif name.startswith("vital_"):
-        src, ftype, window = "vitals.parquet", "count", "30d" if "_30d" in name else "90d"
+        src = "vitals.parquet"
+        window = "30d" if name.endswith("_30d") else "90d"
+        if name.endswith("_diastolic_mean_30d") or name.endswith("_diastolic_mean_90d"):
+            ftype = "diastolic_mean"
+        elif name.endswith("_change_30d") or name.endswith("_change_90d"):
+            ftype = "change"
+        elif name.endswith("_last_30d") or name.endswith("_last_90d"):
+            ftype = "last"
+        elif "_mean_" in name:
+            ftype = "mean"
+        elif "_max_" in name:
+            ftype = "max"
+        elif "_min_" in name:
+            ftype = "min"
+        elif "_count_" in name:
+            ftype = "count"
+        else:
+            ftype = "numeric"
     elif name.startswith("adl_"):
         src = "adl_responses.parquet"
         ftype = "count" if "count" in name else "sum"
@@ -102,8 +113,11 @@ def distribution_row(s: pd.Series) -> dict:
 
 
 def pick_example_row(df: pd.DataFrame, X: pd.DataFrame, feature_cols: list[str]) -> dict:
+    vital_count_cols = [c for c in feature_cols if c.startswith("vital_") and "_count_" in c and c.endswith("_30d")]
+    vital_activity = X[vital_count_cols].sum(axis=1) if vital_count_cols else 0
+    vital_thresh = vital_activity.quantile(0.9) if len(vital_count_cols) else 0
     score = (
-        (X["vital_count_30d"] > X["vital_count_30d"].quantile(0.9)).astype(int)
+        (vital_activity > vital_thresh).astype(int)
         + (X.filter(like="tag_").sum(axis=1) > 0).astype(int)
         + (X["med_count_30d"] > 0).astype(int)
         + (X["dx_active_count"] > 0).astype(int)
@@ -124,7 +138,7 @@ def plot_feature_groups(feature_cols: list[str], out_path: Path) -> None:
     fig, ax = plt.subplots(figsize=(8, 4))
     ax.bar(counts.keys(), counts.values(), color="#4C72B0")
     ax.set_ylabel("Number of features")
-    ax.set_title("Model features by group (n=36)")
+    ax.set_title(f"Model features by group (n={len(feature_cols)})")
     plt.xticks(rotation=25, ha="right")
     plt.tight_layout()
     fig.savefig(out_path, dpi=120)
@@ -133,7 +147,7 @@ def plot_feature_groups(feature_cols: list[str], out_path: Path) -> None:
 
 def plot_window_compare(X: pd.DataFrame, out_path: Path) -> None:
     pairs = [
-        ("vital_count_30d", "vital_count_90d", "Vital sign events"),
+        ("vital_pain_level_count_30d", "vital_pain_level_count_90d", "Pain level (count)"),
         ("med_count_30d", "med_count_90d", "Medication administrations"),
         ("adl_count_30d", "adl_count_90d", "ADL assessments"),
     ]

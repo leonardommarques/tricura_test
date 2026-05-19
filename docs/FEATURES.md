@@ -1,13 +1,13 @@
 # Feature reference
 
-This document describes the **34 numeric predictors** used by the incident-risk models. Features are built in [`src/features.py`](../src/features.py) from weekly resident-time rows in `artifacts/features.parquet` (117,291 rows in the current build).
+This document describes the **74 numeric predictors** used by the incident-risk models. Features are built in [`src/features.py`](../src/features.py) from weekly resident-time rows in `artifacts/features.parquet` (117,291 rows in the current build).
 
 ## Overview
 
 | Concept | Definition |
 | -------- | ----------- |
 | **Grain** | One row = one `resident_id` × weekly `index_date` while the resident is in-facility ([`src/labels.py`](../src/labels.py), `INDEX_FREQ = "W"`). |
-| **Predictors** | 34 numeric columns selected by [`get_feature_matrix()`](../src/train.py) (IDs, dates, and all `y_*` labels excluded). |
+| **Predictors** | 74 numeric columns selected by [`get_feature_matrix()`](../src/train.py) (IDs, dates, and all `y_*` labels excluded). |
 | **Lookback windows** | 30 and 90 days before `index_date`, interval **`[index_date − w, index_date)`** — events on the index day are **not** included. |
 | **Missing values** | Counts and rates are filled with **0** when no qualifying events exist. |
 | **Strikeouts** | Rows with `strikeout = true` are dropped from source clinical tables where that column exists. |
@@ -39,7 +39,7 @@ flowchart TB
 
 ---
 
-## Master catalog (34 features)
+## Master catalog (74 features)
 
 | Feature | Readable name | Group | Source | Type | Window |
 | ------- | ------------- | ----- | ------ | ---- | ------ |
@@ -48,16 +48,12 @@ flowchart TB
 | `days_since_admission` | Days since admission | Resident | `residents.parquet` | point-in-time | as of index |
 | `dx_active_count` | Active diagnoses | Diagnosis | `diagnoses.parquet` | count | as of index |
 | `dx_distinct_icd` | Distinct ICD codes | Diagnosis | `diagnoses.parquet` | distinct | as of index |
-| `vital_count_30d` | Vital sign events (30d) | Vitals | `vitals.parquet` | count | 30d |
-| `vital_count_90d` | Vital sign events (90d) | Vitals | `vitals.parquet` | count | 90d |
 | `med_count_30d` | Medication administrations (30d) | Medications | `medications.parquet` | count | 30d |
 | `med_on_time_rate_30d` | Medication on-time rate (30d) | Medications | `medications.parquet` | rate | 30d |
 | `med_count_90d` | Medication administrations (90d) | Medications | `medications.parquet` | count | 90d |
 | `med_on_time_rate_90d` | Medication on-time rate (90d) | Medications | `medications.parquet` | rate | 90d |
 | `adl_count_30d` | ADL assessments (30d) | ADL | `adl_responses.parquet` | count | 30d |
 | `adl_count_90d` | ADL assessments (90d) | ADL | `adl_responses.parquet` | count | 90d |
-| `adl_change_sum_30d` | ADL change score sum (30d) | ADL | `adl_responses.parquet` | sum | 30d |
-| `adl_change_sum_90d` | ADL change score sum (90d) | ADL | `adl_responses.parquet` | sum | 90d |
 | `gg_count_30d` | Functional (GG) assessments (30d) | GG | `gg_responses.parquet` | count | 30d |
 | `gg_count_90d` | Functional (GG) assessments (90d) | GG | `gg_responses.parquet` | count | 90d |
 | `tag_pain_progress_note_30d` | Document tag (pain progress note 30d) | Document tag | `document_tags.parquet` | count | 30d |
@@ -77,6 +73,8 @@ flowchart TB
 | `tag_antibiotic_therapy_30d` | Document tag (antibiotic therapy 30d) | Document tag | `document_tags.parquet` | count | 30d |
 | `tag_antibiotic_therapy_90d` | Document tag (antibiotic therapy 90d) | Document tag | `document_tags.parquet` | count | 90d |
 | `needs_active_count` | Active care needs | Needs | `needs.parquet` | count | as of index |
+
+**Vital sign features (44):** per-type columns `vital_{slug}_{stat}_{30|90}d` from `vitals.parquet` — see [Vital sign features (per type)](#vital-sign-features-per-type). Config: [`VITAL_FEATURE_STATS`](../config.py).
 
 Document tags are the eight `tag_id` values in [`config.TOP_DOCUMENT_TAGS`](../config.py).
 
@@ -163,7 +161,7 @@ index_date − w  ≤  event_time  <  index_date
 
 ```mermaid
 gantt
-    title Example index_date = 2024-01-15, vital_count_30d
+    title Example index_date = 2024-01-15, lookback window
     dateFormat YYYY-MM-DD
     axisFormat %m-%d
     section Window
@@ -173,32 +171,43 @@ gantt
 
 ---
 
+## Vital sign features (per type)
+
+Built from `vitals.parquet` in [`vital_features()`](../src/features.py). Rows use `vital_type` (mapped via [`VITAL_TYPE_SLUGS`](../config.py)); values come from numeric `value` (and `dystolic_value` for BP).
+
+**Naming:** `vital_{slug}_{stat}_{30|90}d`, except BP diastolic: `vital_bp_systolic_diastolic_mean_{30|90}d`.
+
+**Two-step aggregation:**
+
+1. Per resident, calendar day, and vital type: daily count, mean, max, min of `value` (plus mean diastolic for BP).
+2. Over `[index_date − w, index_date)`: roll up per stat — e.g. sum daily counts for `*_count_*`, mean of daily means for `*_mean_*`, max of daily maxes for `*_max_*`. Weight `last` / `change` use raw readings in the window.
+
+| `vital_type` (slug) | Stats (each × 30d and 90d) |
+| ------------------- | --------------------------- |
+| Pain Level (`pain_level`) | count, mean, max |
+| BP - Systolic (`bp_systolic`) | count, mean, max, diastolic_mean |
+| O2 sats (`o2_sats`) | count, mean, min |
+| Temperature (`temperature`) | count, max |
+| Blood Sugar (`blood_sugar`) | count, mean, max |
+| Weight (`weight`) | count, last, change |
+| Pulse (`pulse`) | count, mean |
+| Respiration (`respiration`) | count, mean |
+
+**44 columns total** (22 stat×window pairs). Full list is in [`config.VITAL_FEATURE_STATS`](../config.py).
+
+---
+
 ## Daily aggregation + window counts
 
-**Applies to:** `vital_count_*`, `adl_count_*`, `gg_count_*`
+**Applies to:** `adl_count_*`, `gg_count_*`
 
 **Steps:**
 
 1. Collapse raw events to **one row per resident per calendar day** with count `_n` (multiple events the same day add to that day’s count).
 2. Sum `_n` over all days in the lookback window.
 
-**Important:** `vital_count_*` includes **all** vital types (blood pressure, temperature, pulse, etc.). `VITAL_TYPES_OF_INTEREST` in config is **not** used in the current pipeline.
-
-**Walkthrough — `vital_count_30d`:**
-
-| measured_at | Calendar day | Daily `_n` |
-| ----------- | ------------ | ---------- |
-| Jan 10 08:00 | Jan 10 | 3 |
-| Jan 10 14:00 | Jan 10 | (same day) |
-| Jan 10 20:00 | Jan 10 | (same day) |
-| Jan 12 09:00 | Jan 12 | 2 |
-
-If `index_date = Jan 15` and window = 30 days → `vital_count_30d = 3 + 2 = **5**` (not 5 raw rows counted twice on Jan 10).
-
 | Feature | % non-zero | p75 (if >0) | p95 | max |
 | ------- | ---------- | ----------- | --- | --- |
-| `vital_count_30d` | 33.4% | 66 | 278 | 913 |
-| `vital_count_90d` | 34.0% | 154 | 754 | 2530 |
 | `adl_count_30d` | 1.1% | — | — | 3580 |
 | `gg_count_30d` | 1.3% | — | — | 3094 |
 
@@ -230,18 +239,6 @@ If `index_date = Jan 15` and window = 30 days → `vital_count_30d = 3 + 2 = **5
 | `med_on_time_rate_30d` | 3.8% | 1.0 |
 
 ![Medication on-time rate (30d)](figures/med_on_time_rate_hist.png)
-
----
-
-## ADL change sum (2)
-
-| Feature | Definition |
-| ------- | ----------- |
-| `adl_change_sum_*` | **Sum** of `adl_change` on each assessment row in the window (no daily collapse) |
-
-**Example:** assessments with `adl_change` = +1, −2, +1 → `adl_change_sum_30d = 0`
-
-Most resident-weeks have zero ADL activity in the window (% non-zero ≈ 1%).
 
 ---
 
@@ -290,7 +287,7 @@ Illustrative row with high vitals, medications, diagnoses, tags, and needs (IDs 
 | `age_years` | 79.0 |
 | `days_since_admission` | 446 |
 | `dx_active_count` | 27 |
-| `vital_count_30d` | 225 |
+| `vital_pain_level_count_30d` (example) | see `docs/feature_doc_stats.json` |
 | `med_count_30d` | 797 |
 | `med_on_time_rate_30d` | 0.38 |
 | `tag_wound_care_30d` | 1 |
@@ -299,9 +296,9 @@ Illustrative row with high vitals, medications, diagnoses, tags, and needs (IDs 
 
 ---
 
-## Distribution appendix (all 34)
+## Distribution appendix (all 74)
 
-Stats from `artifacts/features.parquet`. Many count features are zero-inflated (median = 0).
+Stats from `artifacts/features.parquet`. Many count features are zero-inflated (median = 0). Regenerate via `python scripts/feature_doc_stats.py`; full tables in `docs/feature_doc_stats.json`.
 
 | Feature | min | p25 | median | p75 | p95 | max | % nz |
 | ------- | --- | --- | ------ | --- | --- | --- | ---- |
@@ -310,16 +307,12 @@ Stats from `artifacts/features.parquet`. Many count features are zero-inflated (
 | `days_since_admission` | −1 | 180 | 480 | 1032 | 2521 | 7248 | 99.9 |
 | `dx_active_count` | 0 | 0 | 10 | 19 | 33 | 75 | 71.6 |
 | `dx_distinct_icd` | 0 | 0 | 10 | 18 | 31 | 67 | 71.6 |
-| `vital_count_30d` | 0 | 0 | 0 | 66 | 278 | 913 | 33.4 |
-| `vital_count_90d` | 0 | 0 | 0 | 154 | 754 | 2530 | 34.0 |
 | `med_count_30d` | 0 | 0 | 0 | 0 | 0 | 4262 | 3.8 |
 | `med_on_time_rate_30d` | 0 | 0 | 0 | 0 | 0 | 1 | 3.8 |
 | `med_count_90d` | 0 | 0 | 0 | 0 | 0 | 11300 | 4.3 |
 | `med_on_time_rate_90d` | 0 | 0 | 0 | 0 | 0 | 1 | 4.3 |
 | `adl_count_30d` | 0 | 0 | 0 | 0 | 0 | 3580 | 1.1 |
 | `adl_count_90d` | 0 | 0 | 0 | 0 | 0 | 7840 | 1.1 |
-| `adl_change_sum_30d` | −127 | 0 | 0 | 0 | 0 | 102 | 1.0 |
-| `adl_change_sum_90d` | −228 | 0 | 0 | 0 | 0 | 199 | 1.0 |
 | `gg_count_30d` | 0 | 0 | 0 | 0 | 0 | 3094 | 1.3 |
 | `gg_count_90d` | 0 | 0 | 0 | 0 | 0 | 8933 | 1.3 |
 | `tag_pain_progress_note_30d` | 0 | 0 | 0 | 0 | 0 | 274 | 2.4 |

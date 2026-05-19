@@ -29,7 +29,7 @@ Build a working model that addresses this business challenge. You decide what to
 
 The `data/` folder contains anonymized records from our backend system, covering a sample of residents across skilled nursing facilities.
 
-See [docs/FEATURES.md](docs/FEATURES.md) for definitions of all 36 model input features (with examples and charts).
+See [docs/FEATURES.md](docs/FEATURES.md) for definitions of all model input features (with examples and charts).
 
 ## Deliverable
 
