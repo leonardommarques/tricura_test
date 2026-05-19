@@ -1,31 +1,31 @@
 incident_type,feature,feature_readable,coefficient,direction,abs_coefficient
-Altercation,vital_bp_systolic_diastolic_mean_90d,Vital (bp systolic diastolic mean 90d),1.212362577591522,increases_risk,1.212362577591522
-Altercation,days_since_admission,Days since admission,-1.0825357853178836,decreases_risk,1.0825357853178836
-Altercation,tag_physician_notification_90d,Document tag (physician notification 90d),0.7349573296449904,increases_risk,0.7349573296449904
-Altercation,vital_temperature_max_30d,Vital (temperature max 30d),0.71444429422344,increases_risk,0.71444429422344
-Altercation,tag_wound_care_90d,Document tag (wound care 90d),-0.7059314148192153,decreases_risk,0.7059314148192153
-Altercation,vital_bp_systolic_count_90d,Vital (bp systolic count 90d),-0.6913056851306411,decreases_risk,0.6913056851306411
-Altercation,vital_temperature_count_90d,Vital (temperature count 90d),0.671667938080798,increases_risk,0.671667938080798
-Altercation,outpatient,Outpatient flag,-0.6481835935938661,decreases_risk,0.6481835935938661
-Altercation,vital_o2_sats_min_90d,Vital (o2 sats min 90d),0.6111846620240046,increases_risk,0.6111846620240046
-Altercation,vital_bp_systolic_count_30d,Vital (bp systolic count 30d),-0.5909966051646028,decreases_risk,0.5909966051646028
-Fall,outpatient,Outpatient flag,-0.6444808576050188,decreases_risk,0.6444808576050188
-Fall,dx_distinct_icd,Distinct ICD codes,0.6219794655540279,increases_risk,0.6219794655540279
-Fall,days_since_admission,Days since admission,-0.5917079854021747,decreases_risk,0.5917079854021747
-Fall,age_years,Age at index (years),0.5618704369539076,increases_risk,0.5618704369539076
-Fall,dx_active_count,Active diagnoses,-0.48462907263584665,decreases_risk,0.48462907263584665
-Fall,vital_o2_sats_mean_90d,Vital (o2 sats mean 90d),0.4604782327911949,increases_risk,0.4604782327911949
-Fall,vital_temperature_max_30d,Vital (temperature max 30d),0.3505906602521067,increases_risk,0.3505906602521067
-Fall,vital_weight_last_90d,Vital (weight last 90d),0.3432692751901961,increases_risk,0.3432692751901961
-Fall,tag_wound_care_30d,Document tag (wound care 30d),-0.33702459170795235,decreases_risk,0.33702459170795235
-Fall,vital_blood_sugar_max_90d,Vital (blood sugar max 90d),-0.33220807752807935,decreases_risk,0.33220807752807935
-Wound,vital_respiration_count_90d,Vital (respiration count 90d),0.756830427452036,increases_risk,0.756830427452036
-Wound,dx_distinct_icd,Distinct ICD codes,0.6751606806371749,increases_risk,0.6751606806371749
-Wound,outpatient,Outpatient flag,-0.5624352264447904,decreases_risk,0.5624352264447904
-Wound,tag_pain_progress_note_90d,Document tag (pain progress note 90d),-0.5492165784305718,decreases_risk,0.5492165784305718
-Wound,vital_bp_systolic_max_30d,Vital (bp systolic max 30d),0.5447747381411808,increases_risk,0.5447747381411808
-Wound,vital_o2_sats_count_90d,Vital (o2 sats count 90d),-0.5399889360014517,decreases_risk,0.5399889360014517
-Wound,vital_bp_systolic_count_90d,Vital (bp systolic count 90d),-0.513713215240938,decreases_risk,0.513713215240938
-Wound,vital_temperature_max_30d,Vital (temperature max 30d),0.4845117382318387,increases_risk,0.4845117382318387
-Wound,dx_active_count,Active diagnoses,-0.47147021875525624,decreases_risk,0.47147021875525624
-Wound,vital_blood_sugar_max_30d,Vital (blood sugar max 30d),0.46896667217606336,increases_risk,0.46896667217606336
+Altercation,vital_weight_last_90d,Vital (weight last 90d),0.15356777809699934,increases_risk,0.15356777809699934
+Altercation,vital_weight_last_30d,Vital (weight last 30d),0.14922367896720637,increases_risk,0.14922367896720637
+Altercation,days_since_admission,Days since admission,-0.1485953655840862,decreases_risk,0.1485953655840862
+Altercation,age_years,Age at index (years),-0.13216635812444122,decreases_risk,0.13216635812444122
+Altercation,vital_pulse_mean_90d,Vital (pulse mean 90d),0.13092425171439478,increases_risk,0.13092425171439478
+Altercation,vital_o2_sats_min_30d,Vital (o2 sats min 30d),0.12071182399120009,increases_risk,0.12071182399120009
+Altercation,vital_o2_sats_mean_30d,Vital (o2 sats mean 30d),0.11758127117074688,increases_risk,0.11758127117074688
+Altercation,vital_temperature_max_90d,Vital (temperature max 90d),0.11543825867675535,increases_risk,0.11543825867675535
+Altercation,vital_pulse_mean_30d,Vital (pulse mean 30d),0.11374336562364527,increases_risk,0.11374336562364527
+Altercation,vital_bp_systolic_diastolic_mean_90d,Vital (bp systolic diastolic mean 90d),0.11195424053656904,increases_risk,0.11195424053656904
+Fall,age_years,Age at index (years),0.381048518562915,increases_risk,0.381048518562915
+Fall,days_since_admission,Days since admission,-0.30782238147830376,decreases_risk,0.30782238147830376
+Fall,vital_temperature_max_30d,Vital (temperature max 30d),0.2697653266242452,increases_risk,0.2697653266242452
+Fall,outpatient,Outpatient flag,-0.20469535058243224,decreases_risk,0.20469535058243224
+Fall,vital_weight_last_90d,Vital (weight last 90d),0.20166778671396332,increases_risk,0.20166778671396332
+Fall,vital_bp_systolic_max_90d,Vital (bp systolic max 90d),0.181650512381542,increases_risk,0.181650512381542
+Fall,vital_blood_sugar_count_90d,Vital (blood sugar count 90d),-0.1669523933121831,decreases_risk,0.1669523933121831
+Fall,vital_blood_sugar_mean_30d,Vital (blood sugar mean 30d),0.1527053701674998,increases_risk,0.1527053701674998
+Fall,vital_pain_level_max_90d,Vital (pain level max 90d),0.151970635069,increases_risk,0.151970635069
+Fall,vital_o2_sats_mean_90d,Vital (o2 sats mean 90d),0.14736610779981316,increases_risk,0.14736610779981316
+Wound,vital_temperature_max_30d,Vital (temperature max 30d),0.2162692672881016,increases_risk,0.2162692672881016
+Wound,vital_o2_sats_min_90d,Vital (o2 sats min 90d),0.2009319158850294,increases_risk,0.2009319158850294
+Wound,vital_pulse_mean_90d,Vital (pulse mean 90d),0.15679011530252943,increases_risk,0.15679011530252943
+Wound,vital_temperature_count_90d,Vital (temperature count 90d),0.15244983325384218,increases_risk,0.15244983325384218
+Wound,vital_o2_sats_mean_90d,Vital (o2 sats mean 90d),0.15162779947900315,increases_risk,0.15162779947900315
+Wound,vital_o2_sats_min_30d,Vital (o2 sats min 30d),0.14035069864263966,increases_risk,0.14035069864263966
+Wound,vital_temperature_count_30d,Vital (temperature count 30d),0.1364735933825495,increases_risk,0.1364735933825495
+Wound,vital_weight_last_90d,Vital (weight last 90d),0.13277116431009747,increases_risk,0.13277116431009747
+Wound,vital_weight_last_30d,Vital (weight last 30d),0.13140057340117076,increases_risk,0.13140057340117076
+Wound,vital_o2_sats_count_30d,Vital (o2 sats count 30d),-0.1298201336366703,decreases_risk,0.1298201336366703
