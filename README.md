@@ -31,6 +31,23 @@ The `data/` folder contains anonymized records from our backend system, covering
 
 See [docs/FEATURES.md](docs/FEATURES.md) for definitions of all model input features (with examples and charts).
 
+## Results notebooks
+
+After running the pipeline (`python run_pipeline.py` from this directory):
+
+| Notebook | Use |
+| -------- | --- |
+| [`notebooks/modeling_results.ipynb`](notebooks/modeling_results.ipynb) | Interactive Plotly charts (best in local Jupyter) |
+| [`notebooks/modeling_results_static.ipynb`](notebooks/modeling_results_static.ipynb) | Static PNG charts for GitHub and HTML export |
+
+Export static HTML:
+
+```bash
+jupyter nbconvert --to html notebooks/modeling_results_static.ipynb
+```
+
+Requires `plotly` and `kaleido` (see `requirements.txt`).
+
 ## Deliverable
 
 - A public git repository with your code (notebooks, scripts, or both) and README.md writeup: what you built, why, key findings

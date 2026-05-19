@@ -44,7 +44,7 @@ remove gg_response_code_mean_ from features and model
 
 remove gg_response_code_mean_, adl_change_sum_30d, adl_change_sum_90d form the model, from features notebook, and features code
 
-
+make a clone of the @tricura_test/notebooks/modeling_results.ipynb but that uses statid results. 
 '''
 
 
